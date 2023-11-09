@@ -1,18 +1,24 @@
 @import "../../styles/variables";
 
 .container {
+  position: relative;
   display: grid;
   width: 100vw;
   height: 100vh;
   grid-template-areas: "leftPartContainer rightPartContainer" "leftPartContainer rightPartContainer" "bottomPartContainer rightPartContainer";
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 2fr 2fr 1fr;
+  grid-template-rows: 2fr 2fr 2fr;
   background-color: $dark;
   color: $light;
   background-image: url($bg-image);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  .MuiStack-root {
+    position: absolute;
+    top: 0.25rem;
+    left: 0.25rem;
+  }
 }
 
 .leftPartContainer {
@@ -48,29 +54,27 @@
 }
 
 .newsletterForm {
-  &>input {
-    margin-top: 0.5rem;
-    width: 100%;
-    &::placeholder {
-      font-style: italic;
-    }
-  }
+  #emailNewsletter {
+    color: $light;
+}
+
   &>button {
     margin-top: 1rem;
-    padding: 0.5rem 0;
-    width: 10rem;
-    background-color: $light;
-    border: 0;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    box-shadow: opacify($dark, 0.2  ) 3px 5px 8px;
-    &:hover {
-      background-color: $primary-alt;
-      color: $light;
-      cursor: pointer;
-    }
+  //   padding: 0.5rem 0;
+  //   width: 10rem;
+  //   background-color: $light;
+  //   color: $dark;
+  //   border: 0;
+  //   border-radius: 5px;
+  //   -webkit-border-radius: 5px;
+  //   -moz-border-radius: 5px;
+  //   -ms-border-radius: 5px;
+  //   -o-border-radius: 5px;
+  //   box-shadow: opacify($dark, 0.2  ) 3px 3px 6px;
+  //   &:hover {
+  //     background-color: $primary-alt;
+  //     color: $light;
+  //     cursor: pointer;
+  //   }
   }
 }

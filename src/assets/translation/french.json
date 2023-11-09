@@ -1,5 +1,8 @@
 {
-  "COMINGSOON":{
-    "title":"On vous prépare une appli aux petits oignons."
-  }
+	"COMINGSOON": {
+		"button"    : "Envoyer",
+		"content"   : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis adipisci aspernatur sint ex voluptatem tempore magnam quasi dolores neque quidem illum at, recusandae eveniet remexpedita ipsum ipslaboriosam cum.",
+		"label"     : "Renseigner une adresse mail pour être tenu au courant de la sortie de l'application",
+		"title"     : "On vous prépare une appli aux petits oignons."
+	}
 }
