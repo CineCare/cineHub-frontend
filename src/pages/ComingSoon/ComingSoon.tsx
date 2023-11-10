@@ -80,6 +80,7 @@ export default function ComingSoon() {
 						</Alert>
 					</Stack>
 				)}
+				<div className="filterMask"></div>
 				<div className="leftPartContainer">
 					<h1 className="title">{COMINGSOON.title}</h1>
 					<p>{COMINGSOON.content}</p>
