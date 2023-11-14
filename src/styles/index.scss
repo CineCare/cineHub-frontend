@@ -179,8 +179,16 @@ template {
   display: none;
 }
 
-@media  (max-width: 860px) {
+
+@media  (max-width: 1024px) {
+  
   html {
-    font-size: 10px;
+    font-size: 14px;
+  }
+}
+@media  (max-width: 674px) {
+
+  html {
+    font-size: 12px;
   }
 }

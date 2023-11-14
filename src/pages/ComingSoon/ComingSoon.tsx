@@ -82,7 +82,8 @@ export default function ComingSoon() {
 					</Stack>
 				)}
 				<div className="filterMask"></div>
-				<div className="leftPartContainer">
+				<div className="leftTopPartContainer"></div>
+				<div className="leftBottomPartContainer">
 					<h1 className="title">{COMINGSOON.title}</h1>
 					<p>{COMINGSOON.content}</p>
 				</div>

@@ -5,9 +5,9 @@
   display: grid;
   width: 100vw;
   height: 100vh;
-  grid-template-areas: "leftPartContainer rightPartContainer" "leftPartContainer rightPartContainer" "bottomPartContainer rightPartContainer";
+  grid-template-areas: "leftTopPartContainer rightPartContainer" "leftBottomPartContainer rightPartContainer" "bottomPartContainer rightPartContainer";
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 2fr 2fr 2fr;
+  grid-template-rows: 1fr 2fr 1fr;
   background-color: $dark;
   color: $light;
   background-image: url($bg-image);
@@ -21,9 +21,13 @@
   }
 }
 
-.leftPartContainer {
+.leftTopPartContainer {
+  grid-area: leftTopPartContainer;
+}
+
+.leftBottomPartContainer {
   z-index: 2;
-  grid-area: leftPartContainer;
+  grid-area: leftBottomPartContainer;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -71,15 +75,20 @@
   background-color: rgba(93, 8, 21, 0.25);
 }
 
-@media  (max-width: 860px) {
+@media  (max-width: 600px) {
   .container {
-    width: 100vw;
-    height: 100vh;
-    grid-template-areas: "leftPartContainer" "bottomPartContainer";
+    grid-template-areas:  "leftTopPartContainer" "leftBottomPartContainer" "bottomPartContainer";
     grid-template-columns: 1fr;
-    grid-template-rows: 2fr 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
   }
-  .leftPartContainer, .bottomPartContainer {
+  .leftBottomPartContainer, .bottomPartContainer {
     padding: 0 1rem;
+  }
+}
+@media  (max-width: 400px) {
+  .leftBottomPartContainer {
+    &>h1 {
+      font-size: 2rem;
+    }
   }
 }
