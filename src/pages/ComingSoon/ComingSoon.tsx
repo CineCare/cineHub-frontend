@@ -31,6 +31,23 @@ export default function ComingSoon() {
 	const [errorMessage, setErrorMessage] = useState("");
 	const [successMessage, setSuccessMessage] = useState("");
 
+	async function callApi() {
+		console.log("Intialisation de l'appel API");
+		console.log("....");
+		console.log("définition de l'adresse cible : 'https://cinehub-backend.codevert.org/'");
+		console.log("....");
+		const objRequest:RequestInit = {
+			method: "GET",
+			headers: {
+				"Accept": "application/json",
+				"Content-Type": "application/json",
+			},
+		};
+		const response = await fetch('https://cinehub-backend.codevert.org/', objRequest);
+		const data = await response.json();
+		console.log(data);
+	}
+
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	// const handleChange = (event: { target: { value: any } }) => {
 	// 	setEmail(event.target.value);
@@ -86,6 +103,7 @@ export default function ComingSoon() {
 				<div className="leftBottomPartContainer">
 					<h1 className="title">{COMINGSOON.title}</h1>
 					<p>{COMINGSOON.content}</p>
+					<span className="buttonForAPI" onClick={()=>callApi()}>Appel API</span>
 				</div>
 				<div className="rightPartContainer"></div>
 			</main>

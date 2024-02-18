@@ -31,6 +31,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  align-items: center;
   padding-left:  2.5rem;
   &>h1 {
     font-size: 2.5rem;
@@ -73,6 +74,25 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(93, 8, 21, 0.25);
+}
+
+.buttonForAPI {
+  width: 10rem;
+  height: 2rem;
+  background-color: $light;
+  color: $primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 6px 6px 10px $dark;
+  };
 }
 
 @media  (max-width: 600px) {
