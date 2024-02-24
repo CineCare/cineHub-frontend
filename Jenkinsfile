@@ -7,10 +7,6 @@ pipeline {
 
     options { buildDiscarder(logRotator(numToKeepStr: '5')) }
 
-    environment {
-        //DOCKER_TAG = "${env.BRANCH_NAME == 'main' ? 'latest' : env.BRANCH_NAME}"
-        //ENV_ID = "${env.BRANCH_NAME == 'main' ? 'backend_env' : "backend_env_" + env.BRANCH_NAME}"
-    }
     
     stages {
         stage('Clean') {
