@@ -35,6 +35,15 @@ pipeline {
             }
         }
 
+        stage('test FTP') {
+            sh '''
+                ftp ftp://ftpuser:testpassword@127.0.0.1:21 <<END_SCRIPT
+                cd dev
+                ls
+                END_SCRIPT
+            '''
+        }
+
         
     }
 
