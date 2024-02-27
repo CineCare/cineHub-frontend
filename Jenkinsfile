@@ -38,7 +38,7 @@ pipeline {
         stage('test FTP') {
             steps {
                 sh '''
-                    ftp ftp://ftpuser:testpassword@127.0.0.1:21 <<END_SCRIPT
+                    ftp ftp://whitedog@cinecare.ca:Ys.]]WCCzdnF64&@node13-ca.n0c.com <<END_SCRIPT
                     cd dev
                     ls
                     END_SCRIPT
