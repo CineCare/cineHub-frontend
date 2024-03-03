@@ -6,6 +6,10 @@ pipeline {
     }
 
     options { buildDiscarder(logRotator(numToKeepStr: '5')) }
+
+    environment {
+        FTP_FOLDER = "${env.BRANCH_NAME == 'master' ? 'www' : "frontend_" + env.BRANCH_NAME}"
+    }
     
     stages {
         stage('Clean') {
@@ -45,7 +49,8 @@ pipeline {
 
         stage('Publish to FTP') {
             steps {
-                echo 'branch name : ${BRANCH_NAME}'
+                echo "branch name : ${BRANCH_NAME}"
+                echo "FTP dist folder : ${FTP_FOLDER}"
                 ftpPublisher alwaysPublishFromMaster: false, continueOnError: false, failOnError: false, paramPublish: [parameterName:""], masterNodeName: '', publishers: [[configName: 'planethoster', transfers: [[asciiMode: false, cleanRemote: true, excludes: '', flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: 'frontend_dev', remoteDirectorySDF: false, removePrefix: 'dist/', sourceFiles: 'dist/']], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false]]
             }
         }
