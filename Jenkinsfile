@@ -6,7 +6,6 @@ pipeline {
     }
 
     options { buildDiscarder(logRotator(numToKeepStr: '5')) }
-
     
     stages {
         stage('Clean') {
@@ -44,22 +43,11 @@ pipeline {
             }
         }
 
-        stage('test FTP') {
+        stage('Publish to FTP') {
             steps {
-                // sh '''
-                //     ftp -i -n "node13-ca.n0c.com" <<END_SCRIPT
-                //     quote USER whitedog@cinecare.ca
-                //     quote PASS Ys.]]WCCzdnF64&
-                //     cd dev
-                //     ls
-                //     END_SCRIPT
-                // '''
                 ftpPublisher alwaysPublishFromMaster: false, continueOnError: false, failOnError: false, paramPublish: [parameterName:""], masterNodeName: '', publishers: [[configName: 'planethoster', transfers: [[asciiMode: false, cleanRemote: true, excludes: '', flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: 'frontend_dev', remoteDirectorySDF: false, removePrefix: 'dist/', sourceFiles: 'dist/']], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false]]
             }
-            
         }
-
-        
     }
 
     post {
