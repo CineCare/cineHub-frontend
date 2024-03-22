@@ -1,10 +1,33 @@
 $navBar-size-height: 5.69rem;
 $navBar-size-width : 7.3rem;
 
-$primary    : #CE3533;
-$primary-alt: #a31818;
-$secondary  : #9B9EAC;
-$light      : #FCF2E3;
-$dark       : #191a19;
+$globalMargin: 1.5rem;
+$globalFontSize: 1.5rem;
+
+$titleFont: 'PlayfairDisplay-VariableFont_wght';
+$textFont: 'LexieReadable-Regular';
+
+// $primary    : #CE3533;
+// $primary-alt: #a31818;
+// $secondary  : #9B9EAC;
+// $light      : #FCF2E3;
+// $dark       : #191a19;
+
+$primary-color    : #2C425C;
+$primary-alt-color: #9998A6;
+$secondary-color  : #7D646B;
+$light-color      : #F7F8F7;
+$dark-color       : #050505;
+
+
+$primary-color    : #2C425C;
+$primary-alt-color: #9998A6;
+$tertiary-color  : #725295;
+$light-color      : #F7F8F7;
+$dark-color       : #050505;
 
 $bg-image : '../../assets/img/assortiment-elements-cinema-fond-rouge-espace-copie.webp';
+
+$font-size-small: 16px;
+$font-size-medium: 18px;
+$font-size-large: 20px;
