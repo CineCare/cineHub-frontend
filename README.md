@@ -1,6 +1,12 @@
-= Cinehub-Frontend = dans un site dynamique c’est la partie finale que l’utilisateur finale voit interface du site = c’est un 
-(React vite (optimisé pour aller plus vite) => framework (librairie) ça facilite le developpement du projet : avantages : avantages : populaire, grosse communauté, moderne, rapide et gain de temps de développement 
-Provient des devs de facebook du java script un peu plus écrit 
+# Cinehub-Frontend
+## Concept
+Dans une appli web, c’est la partie que l’utilisateur aperçoit de l'application et peut intéragir.
+## La stack 
+React vite  qui est une librairie développé par Facebook et qui est optimisée pour être plus performant 
+## Pourquoi une librairie ?
+L'utilisation d'un framework (librairie) facilite le développement du projet et permet de gagner en temps de création.
+### Les avantages : 
+populaire, grosse communauté, moderne, rapide et gain de temps de développement  
 
 ## Conventions de nommage
 
