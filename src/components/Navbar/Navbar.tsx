@@ -5,12 +5,17 @@ import SearchIcon from "@mui/icons-material/Search";
 import logo from "../../assets/img/Logo-base-white.svg";
 import logoText from "../../assets/img/Logo-text-white.svg";
 import { AccountCircle, Settings, ExitToApp } from "@mui/icons-material";
-import { AppBar, Toolbar,Container,Button,Tooltip, TextField, IconButton, Menu, MenuItem, ListItemIcon, Divider, Typography, Box, Avatar } from "@mui/material";
+import { AppBar, Toolbar,Container,Button,Tooltip, TextField, IconButton, Menu, MenuItem, ListItemIcon, Divider, Typography, Box, Avatar, useTheme } from "@mui/material";
 
-const pages       = ['Salles de cinéma', 'Boîtes de production', 'Blog'];
+const pages       = ['Salles de cinéma', 'Boîtes de production', 'Journal de bord'];
 const settings    = ['Profil', 'Mon compte', 'Se déconnecter'];
 
 const Navbar: React.FC = () => {
+  const theme = useTheme();
+  const secondaryColor = theme.palette.secondary.main;
+  
+  const appBarHeight = "4rem"; 
+
   const [anchorElNav, setAnchorElNav]    = React.useState<null | HTMLElement>(null);
 	const [anchorElUser, setAnchorElUser]  = React.useState<null | HTMLElement>(null);
 
@@ -32,11 +37,12 @@ const Navbar: React.FC = () => {
         <img src={logo} alt="Logo" style={{ height: "2.5rem", marginRight: "0.75rem" }} />
         <img src={logoText} alt="Logo textuel" style={{ height: "3rem", marginRight: "0.75rem" }} />
         <div style={{ flexGrow: 50, textAlign: "center" }}>
-          <TextField
+          <TextField 
             id="search"
             label="Rechercher"
             variant="outlined"
             size="small"
+            color="secondary"
             InputProps={{
               endAdornment: <SearchIcon />,
             }}
@@ -85,7 +91,11 @@ const Navbar: React.FC = () => {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ borderRadius:0, color: 'white', display: 'block',borderBottom: '2px solid transparent',height: appBarHeight,
+                '&:hover': {
+                  borderBottomColor: secondaryColor, 
+                  backgroundColor:'transparent',
+                }, }}
               >
                 {page}
               </Button>
