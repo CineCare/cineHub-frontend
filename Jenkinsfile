@@ -48,6 +48,9 @@ pipeline {
         }
 
         stage('Publish to FTP') {
+            when {
+                expression { env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'dev'}
+            }
             steps {
                 echo "branch name : ${BRANCH_NAME}"
                 echo "FTP dist folder : ${FTP_FOLDER}"
