@@ -3,7 +3,7 @@ import React from "react";
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from "@mui/icons-material/Search";
 import logo from "../../assets/img/logo-base-white.svg";
-import logoText from "../../assets/img/Logo-text-white.svg";
+import logoText from "../../assets/img/logo-text-white.svg";
 import { AccountCircle, Settings, ExitToApp } from "@mui/icons-material";
 import { AppBar, Toolbar,Container,Button,Tooltip, TextField, IconButton, Menu, MenuItem, ListItemIcon, Divider, Typography, Box, Avatar, useTheme } from "@mui/material";
 
