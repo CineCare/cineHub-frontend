@@ -1,0 +1,13 @@
+.slick-slider .slick-arrow::before{
+  font-size: 80px;
+}
+
+.MuiBox-root.css-0{
+  display: grid!important;
+  height: calc(100vh - 10rem);
+  grid-template-rows: 10rem 1fr;
+  >h1,h2 {
+    text-align: center;
+    margin: auto 0px;
+  }
+}

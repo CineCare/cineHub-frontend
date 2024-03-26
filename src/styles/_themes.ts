@@ -12,13 +12,15 @@ export const theme = createTheme({
 		contrastThreshold: 4.5,
 	},
 	typography: {
-		fontSize: 16,
+		fontSize: 20,
 		fontFamily: ["'roboto'", "serif"].join(","),
 		h1: {
 			fontFamily: "'Roboto'",
+			fontSize: 50,
 		},
 		h2: {
 			fontFamily: "'Roboto'",
+			fontSize: 40,
 		},
 		h3: {
 			fontFamily: "'Roboto'",

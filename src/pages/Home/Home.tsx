@@ -1,81 +1,221 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import "./Home.scss";
-import React from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { Container, Typography } from '@mui/material';
+import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { Box, Container, ListItem, ListItemIcon, ListItemText, Typography } from "@mui/material";
+import LiveHelpIcon from "@mui/icons-material/LiveHelp";
+import VideoSettingsIcon from "@mui/icons-material/VideoSettings";
+import FormatSizeIcon from "@mui/icons-material/FormatSize";
+import ColorLensIcon from "@mui/icons-material/ColorLens";
+
+function SampleNextArrow(props: any) {
+	const { className, style, onClick } = props;
+	return (
+		<div
+			className={className}
+			style={{ ...style, display: "block", position: "fixed", right: "6rem" }}
+			onClick={onClick}
+		/>
+	);
+}
+
+function SamplePrevArrow(props: any) {
+	const { className, style, onClick } = props;
+	return (
+		<div
+			className={className}
+			style={{ ...style, position: "fixed", left: "2rem", display: "block" }}
+			onClick={onClick}
+		/>
+	);
+}
 
 const Home: React.FC = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 6000,
-    adaptiveHeight: true,
-    accessibility: true
-  };
+	const settings = {
+		dots: false,
+		infinite: true,
+		speed: 500,
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		autoplay: true,
+		autoplaySpeed: 12000,
+		adaptiveHeight: false,
+		accessibility: true,
+		nextArrow: <SampleNextArrow />,
+		prevArrow: <SamplePrevArrow />,
+	};
 
-  return (
-    <Container maxWidth="xl">
-    <Typography variant="h3" gutterBottom>
-      Bienvenue sur notre site!
-    </Typography>
-    <Typography variant="body1" gutterBottom>
-    CINEHUBQUEBEC, votre fenêtre privilégiée sur le cinéma québécois, où passion et accessibilité se rencontrent. Découvrez un univers dédié à valoriser et promouvoir nos salles et productions locales, tout en mettant de l'avant des initiatives inclusives.
-    </Typography>
-    <Typography variant="body1" gutterBottom>
-    Explorez avec nous les dernières sorties, participez à des événements uniques et engagez-vous dans une communauté vibrante au rythme du cinéma d'ici.
-    </Typography>
-    <Typography variant="body1" gutterBottom>
-    CINEHUBQUEBEC, c'est plus qu'une plateforme, c'est un mouvement vers un cinéma universellement accessible.
-    </Typography>
-    <Slider {...settings}>
-      <div>
-        <h3>Fonctionnalité 1</h3>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit minus accusantium repudiandae, laboriosam accusamus aliquam iste reprehenderit enim itaque fugiat commodi alias maiores eaque iure doloremque laborum suscipit provident saepe.
-        Ducimus ex et, ut, eius laborum sunt libero, maxime esse dignissimos provident nobis iure quia! Culpa accusantium dicta eaque error aut maxime? Labore similique quae quas cumque saepe, facere distinctio.
-        Temporibus cum maiores dolorum officiis magni quia ratione laudantium illo qui enim! Dolorem aperiam officia laudantium non esse itaque et quaerat. Cumque itaque, iusto similique consequatur porro quos iure nisi.
-        Ea consequuntur, modi sunt voluptas esse nam non, minima nobis illum quisquam quod excepturi quia! Rem itaque explicabo ipsa asperiores quas voluptas, iste magnam quam voluptates beatae optio, architecto totam?
-        Inventore quisquam earum odit modi atque animi doloremque vero pariatur officia praesentium, laboriosam reiciendis porro, aliquam, officiis saepe rem. Doloremque sint temporibus animi numquam beatae quaerat inventore, nostrum consequuntur expedita!.</p>
-      </div>
-      <div>
-        <h3>Fonctionnalité 2</h3>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis illo cupiditate neque, reprehenderit debitis veritatis ab eveniet quaerat rem placeat aspernatur! Sed aliquam blanditiis iste tenetur ullam qui libero distinctio.
-        Quis possimus dicta modi itaque exercitationem nihil officia assumenda, quod amet numquam aspernatur quisquam, tempore sed illum. Doloribus, odio delectus! Reprehenderit voluptatem, officiis placeat commodi explicabo eos dicta eligendi quo!
-        Voluptatum fugit nisi ipsam soluta corrupti alias deserunt sed illum vitae qui ratione, illo quia pariatur nesciunt nobis repellendus officia possimus consectetur voluptas. Sapiente unde minima, ut repudiandae deserunt enim?
-        Est veritatis impedit, voluptatem quasi doloribus nisi blanditiis error vel sed ea vero, aliquam eius soluta ab adipisci odio consequatur quam nemo aliquid, aspernatur consequuntur fugiat itaque! Adipisci, ullam unde.
-        Dolores itaque, modi perspiciatis neque voluptatem mollitia beatae facere alias eos quo amet voluptatum magni recusandae quod nihil officia illum totam laudantium. Voluptas itaque, praesentium officia animi maxime adipisci quidem.</p>
-      </div>
-      <div>
-        <h3>Fonctionnalité 3</h3>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis illo cupiditate neque, reprehenderit debitis veritatis ab eveniet quaerat rem placeat aspernatur! Sed aliquam blanditiis iste tenetur ullam qui libero distinctio.
-        Quis possimus dicta modi itaque exercitationem nihil officia assumenda, quod amet numquam aspernatur quisquam, tempore sed illum. Doloribus, odio delectus! Reprehenderit voluptatem, officiis placeat commodi explicabo eos dicta eligendi quo!
-        Voluptatum fugit nisi ipsam soluta corrupti alias deserunt sed illum vitae qui ratione, illo quia pariatur nesciunt nobis repellendus officia possimus consectetur voluptas. Sapiente unde minima, ut repudiandae deserunt enim?
-        Est veritatis impedit, voluptatem quasi doloribus nisi blanditiis error vel sed ea vero, aliquam eius soluta ab adipisci odio consequatur quam nemo aliquid, aspernatur consequuntur fugiat itaque! Adipisci, ullam unde.
-        Dolores itaque, modi perspiciatis neque voluptatem mollitia beatae facere alias eos quo amet voluptatum magni recusandae quod nihil officia illum totam laudantium. Voluptas itaque, praesentium officia animi maxime adipisci quidem.</p>
-      </div>
-      <div>
-        <h3>Fonctionnalité 4</h3>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis illo cupiditate neque, reprehenderit debitis veritatis ab eveniet quaerat rem placeat aspernatur! Sed aliquam blanditiis iste tenetur ullam qui libero distinctio.
-        Quis possimus dicta modi itaque exercitationem nihil officia assumenda, quod amet numquam aspernatur quisquam, tempore sed illum. Doloribus, odio delectus! Reprehenderit voluptatem, officiis placeat commodi explicabo eos dicta eligendi quo!
-        Voluptatum fugit nisi ipsam soluta corrupti alias deserunt sed illum vitae qui ratione, illo quia pariatur nesciunt nobis repellendus officia possimus consectetur voluptas. Sapiente unde minima, ut repudiandae deserunt enim?
-        Est veritatis impedit, voluptatem quasi doloribus nisi blanditiis error vel sed ea vero, aliquam eius soluta ab adipisci odio consequatur quam nemo aliquid, aspernatur consequuntur fugiat itaque! Adipisci, ullam unde.
-        Dolores itaque, modi perspiciatis neque voluptatem mollitia beatae facere alias eos quo amet voluptatum magni recusandae quod nihil officia illum totam laudantium. Voluptas itaque, praesentium officia animi maxime adipisci quidem.</p>
-      </div>
-      <div>
-        <h3>Fonctionnalité 5</h3>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis illo cupiditate neque, reprehenderit debitis veritatis ab eveniet quaerat rem placeat aspernatur! Sed aliquam blanditiis iste tenetur ullam qui libero distinctio.
-        Quis possimus dicta modi itaque exercitationem nihil officia assumenda, quod amet numquam aspernatur quisquam, tempore sed illum. Doloribus, odio delectus! Reprehenderit voluptatem, officiis placeat commodi explicabo eos dicta eligendi quo!
-        Voluptatum fugit nisi ipsam soluta corrupti alias deserunt sed illum vitae qui ratione, illo quia pariatur nesciunt nobis repellendus officia possimus consectetur voluptas. Sapiente unde minima, ut repudiandae deserunt enim?
-        Est veritatis impedit, voluptatem quasi doloribus nisi blanditiis error vel sed ea vero, aliquam eius soluta ab adipisci odio consequatur quam nemo aliquid, aspernatur consequuntur fugiat itaque! Adipisci, ullam unde.
-        Dolores itaque, modi perspiciatis neque voluptatem mollitia beatae facere alias eos quo amet voluptatum magni recusandae quod nihil officia illum totam laudantium. Voluptas itaque, praesentium officia animi maxime adipisci quidem.</p>
-      </div>
-    </Slider>
-  </Container>
-  );
+	return (
+		<Container maxWidth="xl">
+			<Slider {...settings}>
+				<Box component="section">
+					<Typography
+						variant="h1"
+						gutterBottom>
+						Un répertoire accessible au service du cinéma
+					</Typography>
+					<div>
+						<Typography
+							variant="body1"
+							gutterBottom>
+							CINEHUBQUEBEC vous ouvre les portes d’un univers fascinant du cinéma québécois, où passion et accessibilité fusionnent harmonieusement.
+						</Typography>
+						<Typography
+							variant="body1"
+							gutterBottom>
+							Notre mission ? Rassembler toutes les informations essentielles sur l’accessibilité dans les salles de cinéma du Québec, mettant en lumière et promouvant les établissements adoptant des
+							pratiques inclusives. Cette initiative découle de recherches approfondies, de nombreuses rencontres enrichissantes et expériences, combinées au travail collaboratif de notre équipe.
+						</Typography>
+						<Typography
+							variant="body1"
+							gutterBottom>
+							CINEHUBQUEBEC est bien plus qu’une simple plateforme. Il incarne un mouvement cinématographique universel et unique qui vous invite à la découverte et à l’inclusion.
+						</Typography>
+						<Typography
+							variant="body1"
+							gutterBottom>
+							Prêt.e à vivre pleinement votre passion pour le septième art ?
+						</Typography>
+					</div>
+				</Box>
+				<Box component="section">
+					<Typography
+						variant="h2"
+						gutterBottom>
+						Les salles de cinémas
+					</Typography>
+					<div>
+						<Typography
+							variant="body1"
+							gutterBottom>
+							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit minus accusantium repudiandae, laboriosam accusamus aliquam iste reprehenderit enim itaque fugiat commodi alias maiores
+							eaque iure doloremque laborum suscipit provident saepe. Ducimus ex et, ut, eius laborum sunt libero, maxime esse dignissimos provident nobis iure quia! Culpa accusantium dicta eaque
+							error aut maxime? Labore similique quae quas cumque saepe, facere distinctio. Temporibus cum maiores dolorum officiis magni quia ratione laudantium illo qui enim! Dolorem aperiam officia
+							laudantium non esse itaque et quaerat. Cumque itaque, iusto similique consequatur porro quos iure nisi. Ea consequuntur, modi sunt voluptas esse nam non, minima nobis illum quisquam quod
+							excepturi quia! Rem itaque explicabo ipsa asperiores quas voluptas, iste magnam quam voluptates beatae optio, architecto totam? Inventore quisquam earum odit modi atque animi doloremque
+							vero pariatur officia praesentium, laboriosam reiciendis porro, aliquam, officiis saepe rem. Doloremque sint temporibus animi numquam beatae quaerat inventore, nostrum consequuntur
+							expedita!
+						</Typography>
+					</div>
+				</Box>
+				<Box component="section">
+					<Typography
+						variant="h2"
+						gutterBottom>
+						Les boîtes de production cinématographique
+					</Typography>
+					<div>
+						<Typography
+							variant="body1"
+							gutterBottom>
+							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit minus accusantium repudiandae, laboriosam accusamus aliquam iste reprehenderit enim itaque fugiat commodi alias maiores
+							eaque iure doloremque laborum suscipit provident saepe. Ducimus ex et, ut, eius laborum sunt libero, maxime esse dignissimos provident nobis iure quia! Culpa accusantium dicta eaque
+							error aut maxime? Labore similique quae quas cumque saepe, facere distinctio. Temporibus cum maiores dolorum officiis magni quia ratione laudantium illo qui enim! Dolorem aperiam officia
+							laudantium non esse itaque et quaerat. Cumque itaque, iusto similique consequatur porro quos iure nisi. Ea consequuntur, modi sunt voluptas esse nam non, minima nobis illum quisquam quod
+							excepturi quia! Rem itaque explicabo ipsa asperiores quas voluptas, iste magnam quam voluptates beatae optio, architecto totam? Inventore quisquam earum odit modi atque animi doloremque
+							vero pariatur officia praesentium, laboriosam reiciendis porro, aliquam, officiis saepe rem. Doloremque sint temporibus animi numquam beatae quaerat inventore, nostrum consequuntur
+							expedita!
+						</Typography>
+					</div>
+				</Box>
+				<Box component="section">
+					<Typography
+						variant="h2"
+						gutterBottom>
+						Le journal de bord
+					</Typography>
+					<div>
+						<Typography
+							variant="body1"
+							gutterBottom>
+							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit minus accusantium repudiandae, laboriosam accusamus aliquam iste reprehenderit enim itaque fugiat commodi alias maiores
+							eaque iure doloremque laborum suscipit provident saepe. Ducimus ex et, ut, eius laborum sunt libero, maxime esse dignissimos provident nobis iure quia! Culpa accusantium dicta eaque
+							error aut maxime? Labore similique quae quas cumque saepe, facere distinctio. Temporibus cum maiores dolorum officiis magni quia ratione laudantium illo qui enim! Dolorem aperiam officia
+							laudantium non esse itaque et quaerat. Cumque itaque, iusto similique consequatur porro quos iure nisi. Ea consequuntur, modi sunt voluptas esse nam non, minima nobis illum quisquam quod
+							excepturi quia! Rem itaque explicabo ipsa asperiores quas voluptas, iste magnam quam voluptates beatae optio, architecto totam? Inventore quisquam earum odit modi atque animi doloremque
+							vero pariatur officia praesentium, laboriosam reiciendis porro, aliquam, officiis saepe rem. Doloremque sint temporibus animi numquam beatae quaerat inventore, nostrum consequuntur
+							expedita!
+						</Typography>
+					</div>
+				</Box>
+				<Box component="section">
+					<Typography
+						variant="h2"
+						gutterBottom>
+						Les réglages personnalisés pour une meilleure expérience utilisateur
+					</Typography>
+					<div>
+						<Typography
+							variant="body1"
+							gutterBottom>
+							Votre confort est notre priorité. C’est pourquoi nous vous proposons de découvrir une expérience utilisateur sur mesure grâce à notre fonctionnalité de personnalisation avancée.
+						</Typography>
+						<Typography
+							variant="body1"
+							gutterBottom>
+							Nous vous offrons la possibilité de régler de nombreux paramètres pour les adapter selon vos préférences et vos besoins.
+						</Typography>
+						<Typography
+							variant="body1"
+							gutterBottom>
+							Notre gamme complète d’options de personnalisation comprend notamment :
+							<ListItem>
+								<ListItemIcon>
+									<LiveHelpIcon />
+								</ListItemIcon>
+								<ListItemText primary="d’ajuster le niveau d'aide que vous recevez" />
+							</ListItem>
+							<ListItem>
+								<ListItemIcon>
+									<ColorLensIcon />
+								</ListItemIcon>
+								<ListItemText primary=" de choisir des couleurs et une police qui vous conviennent" />
+							</ListItem>
+							<ListItem>
+								<ListItemIcon>
+									<FormatSizeIcon />
+								</ListItemIcon>
+								<ListItemText primary="de modifier la taille du texte pour une lecture plus confortable" />
+							</ListItem>
+							<ListItem>
+								<ListItemIcon>
+									<VideoSettingsIcon />
+								</ListItemIcon>
+								<ListItemText primary="de personnaliser le mode automatique et audio" />
+							</ListItem>
+						</Typography>
+					</div>
+				</Box>
+				<Box component="section">
+					<Typography
+						variant="h2"
+						gutterBottom>
+						Votre assistant personnel
+					</Typography>
+					<div>
+						<Typography
+							variant="body1"
+							gutterBottom>
+							Vous êtes à la recherche d’informations spécifiques, de recommandations personnalisées ou simplement d’une visite guidée pour vous familiariser avec nos fonctionnalités ?
+						</Typography>
+						<Typography
+							variant="body1"
+							gutterBottom>
+							Notre assistant virtuel est là pour vous aider à explorer toutes les facettes de notre site et à rendre votre expérience aussi agréable que possible.
+						</Typography>
+						<Typography
+							variant="body1"
+							gutterBottom>
+							Comment procéder ? Faites appel à lui tout au long de votre navigation, posez-lui vos questions et lancez des actions en toute simplicité. Que vous souhaitiez accéder à une page
+							particulière du site ou bien filtrer les résultats de recherche selon vos critères, notre assistant est à votre disposition pour répondre à tous vos besoins.
+						</Typography>
+					</div>
+				</Box>
+			</Slider>
+		</Container>
+	);
 };
 
 export default Home;
