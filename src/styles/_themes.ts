@@ -9,8 +9,7 @@ export const theme = createTheme({
 		secondary: {
 			main: "#725295",
 		},
-		// contrastThreshold: 4.5,
-		contrastThreshold: 5,
+		contrastThreshold: 4.5,
 	},
 	typography: {
 		fontSize: 20,
