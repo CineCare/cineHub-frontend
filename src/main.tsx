@@ -6,17 +6,16 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home.tsx";
 import MovieTheaters from "./pages/MovieTheaters/MovieTheaters.tsx";
 import Error from "./pages/Error/Error.tsx";
-import { ThemeProvider } from "@emotion/react";
+import { ThemeProvider as CustomThemeProvider } from './contexts/ThemeContext'
 import { CssBaseline } from "@mui/material";
 import Navbar from "./components/Navbar/Navbar.tsx";
-import {theme} from './styles/_themes.ts'; 
 import ProductionStudios from "./pages/ProductionStudios/ProductionStudios.tsx";
 import Dashboard from "./pages/Dashboard/Dashboard.tsx";
 import Filter from "./components/Filter/Filter.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
-		<ThemeProvider theme={theme}>
+		<CustomThemeProvider>
 			<CssBaseline />
 			<Router>
 				<Navbar />
@@ -39,6 +38,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 						element={<Error />}></Route>
 				</Routes>
 			</Router>
-		</ThemeProvider>
+		</CustomThemeProvider>
 	</React.StrictMode>
 );

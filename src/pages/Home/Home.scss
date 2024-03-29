@@ -5,9 +5,21 @@
 .MuiBox-root.css-0{
   display: grid!important;
   height: calc(100vh - 10rem);
-  grid-template-rows: 10rem 1fr;
+  grid-template-rows: 8rem 1fr;
   >h1,h2 {
     text-align: center;
     margin: auto 0px;
+  }
+}
+
+section .contentContainer>div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  img {
+    margin-top: 1.5rem;
+    width: 25%;
+    border-radius: 1.5rem;
   }
 }
