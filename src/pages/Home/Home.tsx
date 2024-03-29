@@ -13,7 +13,7 @@ import illustrationAssistant from '../../assets/img/illustration-assistant-virtu
 import illustrationProduction from '../../assets/img/illustration-boite-prod.jpg';
 import illustrationDashboard from '../../assets/img/illustration-journal-de-bord.jpg';
 import illustrationUserPrefs from '../../assets/img/illustration-preferences-utilisateur.jpg';
-import illustrationTheater from '../../assets/img/illustration-salle-cinéma.jpg';
+import illustrationTheater from '../../assets/img/illustration-salle-cinema.jpg';
 import illustrationHub from '../../assets/img/illustration-repertoire-accessible.jpg';
 
 function SampleNextArrow(props: any) {
