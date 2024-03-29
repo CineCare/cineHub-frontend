@@ -9,6 +9,12 @@ import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import VideoSettingsIcon from "@mui/icons-material/VideoSettings";
 import FormatSizeIcon from "@mui/icons-material/FormatSize";
 import ColorLensIcon from "@mui/icons-material/ColorLens";
+import illustrationAssistant from '../../assets/img/illustration-assistant-virtuel.jpg';
+import illustrationProduction from '../../assets/img/illustration-boite-prod.jpg';
+import illustrationDashboard from '../../assets/img/illustration-journal-de-bord.jpg';
+import illustrationUserPrefs from '../../assets/img/illustration-preferences-utilisateur.jpg';
+import illustrationTheater from '../../assets/img/illustration-salle-cinéma.jpg';
+import illustrationHub from '../../assets/img/illustration-repertoire-accessible.jpg';
 
 function SampleNextArrow(props: any) {
 	const { className, style, onClick } = props;
@@ -80,7 +86,7 @@ const Home: React.FC = () => {
 						</Typography>
 						<div>
 						<img
-								src="src/assets/img/illustration-repertoire-accessible.jpg"
+								src={illustrationHub}
 								alt=""
 							/>
 						</div>
@@ -106,7 +112,7 @@ const Home: React.FC = () => {
 						</Typography>
 						<div>
 						<img
-								src="src/assets/img/illustration-salle-cinéma.jpg"
+								src={illustrationTheater}
 								alt=""
 							/>
 							</div>
@@ -132,7 +138,7 @@ const Home: React.FC = () => {
 						</Typography>
 						<div>
 						<img
-								src="src/assets/img/illustration-boite-prod.jpg"
+								src={illustrationProduction}
 								alt=""
 							/>
 						</div>
@@ -158,7 +164,7 @@ const Home: React.FC = () => {
 						</Typography>
 						<div>
 						<img
-								src="src/assets/img/illustration-journal-de-bord.jpg"
+								src={illustrationDashboard}
 								alt=""
 							/>
 						</div>
@@ -204,7 +210,7 @@ const Home: React.FC = () => {
 						</Typography>
 						<div>
 						<img
-								src="src/assets/img/illustration-preferences-utilisateur.jpg"
+								src={illustrationUserPrefs}
 								alt=""
 							/>
 						</div>
@@ -235,7 +241,7 @@ const Home: React.FC = () => {
 						</Typography>
 						<div>
 							<img
-								src="src/assets/img/illustration-assistant-virtuel.jpg"
+								src={illustrationAssistant}
 								alt=""
 							/>
 						</div>
