@@ -56,7 +56,7 @@ const Home: React.FC = () => {
 						gutterBottom>
 						Un répertoire accessible au service du cinéma
 					</Typography>
-					<div>
+					<div className="contentContainer">
 						<Typography
 							variant="body1"
 							gutterBottom>
@@ -71,13 +71,19 @@ const Home: React.FC = () => {
 						<Typography
 							variant="body1"
 							gutterBottom>
-							CINEHUBQUEBEC est bien plus qu’une simple plateforme. Il incarne un mouvement cinématographique universel et unique qui vous invite à la découverte et à l’inclusion.
+							CINEHUBQUEBEC est bien plus qu’une simple plateforme. Il incarne un mouvement cinématographique universel et unique qui vous invite à la découverte et à l’inclusivité.
 						</Typography>
 						<Typography
 							variant="body1"
 							gutterBottom>
 							Prêt.e à vivre pleinement votre passion pour le septième art ?
 						</Typography>
+						<div>
+						<img
+								src="src/assets/img/illustration-repertoire-accessible.jpg"
+								alt=""
+							/>
+						</div>
 					</div>
 				</Box>
 				<Box component="section">
@@ -86,7 +92,7 @@ const Home: React.FC = () => {
 						gutterBottom>
 						Les salles de cinémas
 					</Typography>
-					<div>
+					<div className="contentContainer">
 						<Typography
 							variant="body1"
 							gutterBottom>
@@ -98,6 +104,12 @@ const Home: React.FC = () => {
 							vero pariatur officia praesentium, laboriosam reiciendis porro, aliquam, officiis saepe rem. Doloremque sint temporibus animi numquam beatae quaerat inventore, nostrum consequuntur
 							expedita!
 						</Typography>
+						<div>
+						<img
+								src="src/assets/img/illustration-salle-cinéma.jpg"
+								alt=""
+							/>
+							</div>
 					</div>
 				</Box>
 				<Box component="section">
@@ -106,7 +118,7 @@ const Home: React.FC = () => {
 						gutterBottom>
 						Les boîtes de production cinématographique
 					</Typography>
-					<div>
+					<div className="contentContainer">
 						<Typography
 							variant="body1"
 							gutterBottom>
@@ -118,6 +130,12 @@ const Home: React.FC = () => {
 							vero pariatur officia praesentium, laboriosam reiciendis porro, aliquam, officiis saepe rem. Doloremque sint temporibus animi numquam beatae quaerat inventore, nostrum consequuntur
 							expedita!
 						</Typography>
+						<div>
+						<img
+								src="src/assets/img/illustration-boite-prod.jpg"
+								alt=""
+							/>
+						</div>
 					</div>
 				</Box>
 				<Box component="section">
@@ -126,7 +144,7 @@ const Home: React.FC = () => {
 						gutterBottom>
 						Le journal de bord
 					</Typography>
-					<div>
+					<div className="contentContainer">
 						<Typography
 							variant="body1"
 							gutterBottom>
@@ -138,6 +156,12 @@ const Home: React.FC = () => {
 							vero pariatur officia praesentium, laboriosam reiciendis porro, aliquam, officiis saepe rem. Doloremque sint temporibus animi numquam beatae quaerat inventore, nostrum consequuntur
 							expedita!
 						</Typography>
+						<div>
+						<img
+								src="src/assets/img/illustration-journal-de-bord.jpg"
+								alt=""
+							/>
+						</div>
 					</div>
 				</Box>
 				<Box component="section">
@@ -146,21 +170,13 @@ const Home: React.FC = () => {
 						gutterBottom>
 						Les réglages personnalisés pour une meilleure expérience utilisateur
 					</Typography>
-					<div>
+					<div className="contentContainer">
 						<Typography
 							variant="body1"
-							gutterBottom>
+							>
 							Votre confort est notre priorité. C’est pourquoi nous vous proposons de découvrir une expérience utilisateur sur mesure grâce à notre fonctionnalité de personnalisation avancée.
-						</Typography>
-						<Typography
-							variant="body1"
-							gutterBottom>
 							Nous vous offrons la possibilité de régler de nombreux paramètres pour les adapter selon vos préférences et vos besoins.
-						</Typography>
-						<Typography
-							variant="body1"
-							gutterBottom>
-							Notre gamme complète d’options de personnalisation comprend notamment :
+							Les options de personnalisation comprennent notamment :
 							<ListItem>
 								<ListItemIcon>
 									<LiveHelpIcon />
@@ -186,6 +202,12 @@ const Home: React.FC = () => {
 								<ListItemText primary="de personnaliser le mode automatique et audio" />
 							</ListItem>
 						</Typography>
+						<div>
+						<img
+								src="src/assets/img/illustration-preferences-utilisateur.jpg"
+								alt=""
+							/>
+						</div>
 					</div>
 				</Box>
 				<Box component="section">
@@ -194,7 +216,7 @@ const Home: React.FC = () => {
 						gutterBottom>
 						Votre assistant personnel
 					</Typography>
-					<div>
+					<div className="contentContainer">
 						<Typography
 							variant="body1"
 							gutterBottom>
@@ -211,6 +233,12 @@ const Home: React.FC = () => {
 							Comment procéder ? Faites appel à lui tout au long de votre navigation, posez-lui vos questions et lancez des actions en toute simplicité. Que vous souhaitiez accéder à une page
 							particulière du site ou bien filtrer les résultats de recherche selon vos critères, notre assistant est à votre disposition pour répondre à tous vos besoins.
 						</Typography>
+						<div>
+							<img
+								src="src/assets/img/illustration-assistant-virtuel.jpg"
+								alt=""
+							/>
+						</div>
 					</div>
 				</Box>
 			</Slider>

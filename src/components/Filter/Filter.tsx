@@ -50,13 +50,7 @@ const Filter: React.FC = () => {
 		<Container sx={{ display: "flex", justifyContent: "center" }}>
 			<Button
 				variant="contained"
-				onClick={handleClickOpen}
-				sx={{
-					borderTopRightRadius: 0,
-					borderTopLeftRadius: 0,
-					borderBottomLeftRadius: 35,
-					borderBottomRightRadius: 35,
-				}}>
+				onClick={handleClickOpen}>
 				Réglages utilisateur
 			</Button>
 			<Dialog
