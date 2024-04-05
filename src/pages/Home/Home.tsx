@@ -122,7 +122,7 @@ const Home: React.FC = () => {
 					<Typography
 						variant="h2"
 						gutterBottom>
-						Les boîtes de production cinématographique
+						Les boîtes de production
 					</Typography>
 					<div className="contentContainer">
 						<Typography
@@ -183,25 +183,25 @@ const Home: React.FC = () => {
 							Votre confort est notre priorité. C’est pourquoi nous vous proposons de découvrir une expérience utilisateur sur mesure grâce à notre fonctionnalité de personnalisation avancée.
 							Nous vous offrons la possibilité de régler de nombreux paramètres pour les adapter selon vos préférences et vos besoins.
 							Les options de personnalisation comprennent notamment :
-							<ListItem>
+							<ListItem sx={{padding:0}}>
 								<ListItemIcon>
 									<LiveHelpIcon />
 								</ListItemIcon>
 								<ListItemText primary="d’ajuster le niveau d'aide que vous recevez" />
 							</ListItem>
-							<ListItem>
+							<ListItem sx={{padding:0}}>
 								<ListItemIcon>
 									<ColorLensIcon />
 								</ListItemIcon>
 								<ListItemText primary=" de choisir des couleurs et une police qui vous conviennent" />
 							</ListItem>
-							<ListItem>
+							<ListItem sx={{padding:0}}>
 								<ListItemIcon>
 									<FormatSizeIcon />
 								</ListItemIcon>
 								<ListItemText primary="de modifier la taille du texte pour une lecture plus confortable" />
 							</ListItem>
-							<ListItem>
+							<ListItem sx={{padding:0}}>
 								<ListItemIcon>
 									<VideoSettingsIcon />
 								</ListItemIcon>

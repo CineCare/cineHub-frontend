@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
 							alt="Logo"
 							style={{ height: "2.5rem", marginRight: "0.75rem" }}
 						/>
-						<Hidden smDown>
+						<Hidden lgDown>
 							<img
 								src={logoText}
 								alt="Logo textuel"

@@ -35,6 +35,17 @@ export const theme = createTheme({
 			fontFamily: "'Roboto'",
 		},
 	},
+// 	components: {
+// 	MuiTypography: {
+// 		styleOverrides: {
+// 			root: {
+// 				'@media (max-width:1024px)': {
+// 					fontSize: '16px', // Réduire la taille de la police pour les écrans md
+// 				},
+// 			},
+// 		},
+// 	},
+// }
 });
 
 export const unreadableTheme = createTheme({
@@ -84,10 +95,6 @@ export const unreadableTheme = createTheme({
 				contained: {
 					color: "white",
 					backgroundColor: "#fdfdfd",
-					borderTopRightRadius: 0,
-					borderTopLeftRadius: 0,
-					borderBottomLeftRadius: 35,
-					borderBottomRightRadius: 35,
 					"&:hover": {
 						backgroundColor: "rgba(0, 0, 0, 0.04)",
 					},
@@ -95,7 +102,6 @@ export const unreadableTheme = createTheme({
 			},
 		},
 	},
-	
 });
 
 		// tertiary: {
