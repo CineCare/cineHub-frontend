@@ -13,39 +13,28 @@ export const theme = createTheme({
 	},
 	typography: {
 		fontSize: 18,
-		fontFamily: ["'roboto'", "serif"].join(","),
+		fontFamily: ["Roboto", "serif"].join(","),
 		h1: {
-			fontFamily: "'Roboto'",
+			fontFamily: "Roboto",
 			fontSize: 45,
 		},
 		h2: {
-			fontFamily: "'Roboto'",
+			fontFamily: "Roboto",
 			fontSize: 35,
 		},
 		h3: {
-			fontFamily: "'Roboto'",
+			fontFamily: "Roboto",
 		},
 		h4: {
-			fontFamily: "'Roboto'",
+			fontFamily: "Roboto",
 		},
 		h5: {
-			fontFamily: "'Roboto'",
+			fontFamily: "Roboto",
 		},
 		h6: {
-			fontFamily: "'Roboto'",
+			fontFamily: "Roboto",
 		},
 	},
-// 	components: {
-// 	MuiTypography: {
-// 		styleOverrides: {
-// 			root: {
-// 				'@media (max-width:1024px)': {
-// 					fontSize: '16px', // Réduire la taille de la police pour les écrans md
-// 				},
-// 			},
-// 		},
-// 	},
-// }
 });
 
 export const unreadableTheme = createTheme({
@@ -103,6 +92,3 @@ export const unreadableTheme = createTheme({
 		},
 	},
 });
-
-		// tertiary: {
-		// 	main: "#f50057",

@@ -4,18 +4,19 @@ import React, { useEffect } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { LatLngExpression } from "leaflet";
 import { AccessibilityObject, CinemaObject } from "../../Interfaces/Interfaces";
-import { fetchAccessibilities, fetchDatas } from "../../services/fetcher";
+import { fetchDatas } from "../../services/fetcher";
 import { genders, tags, distances, accessibilities, position } from "../../mockups/movieTheatersMockup";
 import { MenuProps } from "../../options/MUIOptions";
 
 const MovieTheater: React.FC = () => {
-	const [accessibility, setAccessibility] = React.useState<string[]>([]);
-	const [accessibilityOptions, setAccessibilityOptions] = React.useState<AccessibilityObject[]>([]);
-	const [datas, setDatas] = React.useState<CinemaObject[]>([]);
-	const [distance, setDistance] = React.useState<string[]>([]);
-	const [gender, setGender] = React.useState<string[]>([]);
-	const [markers, setMarkers] = React.useState<LatLngExpression[]>([]);
-	const [tag, setTag] = React.useState<string[]>([]);
+	
+	const [accessibility, setAccessibility]                  = React.useState<string[]>([]);
+	const [accessibilityOptions, setAccessibilityOptions]    = React.useState<AccessibilityObject[]>([]);
+	const [cinemas, setCinemas]                              = React.useState<CinemaObject[]>([]);
+	const [distance, setDistance]                            = React.useState<string[]>([]);
+	const [gender, setGender]                                = React.useState<string[]>([]);
+	const [markers, setMarkers]                              = React.useState<LatLngExpression[]>([]);
+	const [tag, setTag]                                      = React.useState<string[]>([]);
 
 	/**
 	 * La fonction `getGPSDatas` prend un tableau d'objets avec des coordonnées GPS et extrait les valeurs
@@ -95,14 +96,14 @@ const MovieTheater: React.FC = () => {
 	useEffect(() => {
 		const initMovieTheaters = async () => {
 			try {
-				const data = await fetchDatas();
-				setDatas(data);
-				getGPSDatas(data);
-				const accessibilities = await fetchAccessibilities();
+				const datas = await fetchDatas('cinemas');
+				setCinemas(datas);
+				getGPSDatas(datas);
+				const accessibilities = await fetchDatas('accessibilities');
 				setAccessibilityOptions(accessibilities);
 				console.log(accessibilityOptions);
 			} catch (error) {
-				console.error(error);
+				throw new Error;
 			}
 		};
 		initMovieTheaters();
@@ -237,10 +238,10 @@ const MovieTheater: React.FC = () => {
 							<Popup>
 								<img
 									style={{ width: "100%" }}
-									src={datas[index].photo}
+									src={cinemas[index].photo}
 								/>
 								<br />
-								{datas[index].name} <br /> {datas[index].address1}.
+								{cinemas[index].name} <br /> {cinemas[index].address1}.
 							</Popup>
 						</Marker>
 					))}
@@ -249,7 +250,7 @@ const MovieTheater: React.FC = () => {
 			<Grid
 				container
 				xs={8}>
-				{datas.map(obj => (
+				{cinemas.map(obj => (
 					<Grid
 						item
 						xs={4}>

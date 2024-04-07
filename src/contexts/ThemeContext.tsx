@@ -1,23 +1,14 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { ThemeProvider as MuiThemeProvider, CssBaseline, GlobalStyles } from '@mui/material';
 import { unreadableTheme, theme } from '../styles/_themes';
+import { ThemeContextType, ThemeProviderProps } from '../Interfaces/Interfaces';
 
-interface ThemeContextType {
-  darkMode: boolean;
-  toggleDarkMode: () => void;
-}
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-interface ThemeProviderProps {
-  children: ReactNode;
-}
-
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [darkMode, setDarkMode] = useState(false);
-
   const toggleDarkMode = () => setDarkMode(prevMode => !prevMode);
-
   const chosenTheme = darkMode ? unreadableTheme : theme;
 
   const value: ThemeContextType = {
@@ -42,6 +33,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useTheme = (): ThemeContextType => {
   const context = useContext(ThemeContext);
   if (!context) {
