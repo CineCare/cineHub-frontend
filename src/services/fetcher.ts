@@ -14,3 +14,35 @@ export async function postEmailFetch(body:string, authToken: string) {
     console.error("erreur :", err);
   }
 }
+
+export async function fetchDatas() {
+	try {
+		const objRequest: RequestInit = {
+			method: "GET",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+		};
+		const response = await fetch("https://cinehub-dev-backend.codevert.org/cinemas", objRequest);
+		return await response.json();
+	} catch (error) {
+		console.error(error);
+	}
+}
+
+export async function fetchAccessibilities() {
+	try {
+		const objRequest: RequestInit = {
+			method: "GET",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+		};
+		const response = await fetch("https://cinehub-dev-backend.codevert.org/accessibilities", objRequest);
+		return await response.json();
+	} catch (error) {
+		console.error(error);
+	}
+}
