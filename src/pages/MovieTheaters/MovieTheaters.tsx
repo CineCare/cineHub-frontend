@@ -1,6 +1,6 @@
-import { Card, CardActionArea, CardContent, CardMedia, FormControl, Grid, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
+import { Box, Card, CardActionArea, CardContent, CardMedia, FormControl, Grid, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
 import "./MovieTheaters.scss";
-import React from "react";
+import React, { useEffect } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { LatLngExpression } from "leaflet";
 
@@ -19,44 +19,109 @@ const MovieTheater: React.FC = () => {
 	const names2 = ["Billy Crawford", "Van Helsing", "April O' Neil", "Ralph La Casse", "Omar & Fred", "Carlos Santana", " Wagner & Mozart", "Bradley Cooper", "Virginia Grimaldia", "Kelly Rownie"];
 	const names3 = ["10km", "20km", "30km", "40km", "50km", "60km", "80km", "90km", "100km", "+100km"];
 	const names4 = ["PMR", "Casque", "Braille", "Audio description", "Place adaptée"];
-	const datas = [
+	const datasOld = [
 		{
 			name: "Cinema 1",
 			utilities: [],
 			address: "402, Avenue Timùut",
-			image: "https://cdn.pixabay.com/photo/2023/04/06/09/39/camera-7903435_960_720.jpg",
+			image: "https://i.ibb.co/Sv45XNR/meduse-vue-exterieure-de-meduse.jpg",
 		},
 		{
 			name: "Cinema 2",
 			utilities: [],
 			address: "402, Avenue Timùut",
-			image: "https://cdn.pixabay.com/photo/2015/07/21/17/45/cinema-854178_960_720.jpg",
+			image: "https://i.ibb.co/wWm5TMr/cinema-cartier-is-on.jpg",
 		},
 		{
 			name: "Cinema 3",
 			utilities: [],
 			address: "402, Avenue Timùut",
-			image: "https://cdn.pixabay.com/photo/2017/07/13/23/11/cinema-2502213_960_720.jpg",
+			image: "https://aws-tiqets-cdn.imgix.net/images/content/ee95e375eeb04bfc96cb9aa6e2b7455d.jpg?auto=format&fit=crop&h=800&ixlib=python-3.2.1&q=70&w=800&s=a10ed51e6e26cd6ddc2a56f0f02fc790",
 		},
 		{
 			name: "Cinema 4",
 			utilities: [],
 			address: "402, Avenue Timùut",
-			image: "https://cdn.pixabay.com/photo/2016/03/07/00/00/cinema-1241422_960_720.jpg",
+			image: "https://m1.quebecormedia.com/emp/jdx-prod-images/8f7bcb9f-c099-4fe4-9704-16e1886225b1_JDX-NO-RATIO_WEB.jpg?impolicy=resize&quality=80&width=1400",
 		},
 		{
 			name: "Cineplex Odeon - Quartier latin",
 			utilities: [],
 			address: "350, rue Émery, Montréal, QC H2X 1J1",
-			image: "https://live.staticflickr.com/4085/4984558538_4f41b2cbb4_b.jpg",
+			image: "https://lh3.googleusercontent.com/p/AF1QipNH4EGRYjOTMsjL4BrakvbM-PcDlZvd9h4SyGFT=s1600-w640",
 		},
 		{
 			name: "Cinema Guzzo Méga-Plex",
 			utilities: [],
 			address: "5940, des Grandes Prairies, Montréal (Québec), H1P 1A4",
-			image: "https://www.cinemasguzzo.com/DATA/CINEMA/6~v~mega-plex-lacordaire-16.jpg",
+			image: "https://photos.cinematreasures.org/production/photos/215322/1501695859/large.jpg?1501695859",
 		},
 	];
+
+	type AccessibilityObject = {
+		id: number;
+		name: string;
+		description: string;
+		audio: string;
+		picto: string;
+	};
+	type CinemaObject = {
+		id: number;
+		name: string;
+		address1: string;
+		address2?: string;
+		city: string;
+		postalCode: string;
+		email: string;
+		phone: string;
+		photo?: string;
+		gps: string;
+		description?: string;
+		audio?: string;
+		createdAt: string;
+		updatedAt: string;
+		accessibilities: AccessibilityObject[];
+	};
+
+	const [datas, setDatas] = React.useState<CinemaObject[]>([]);
+	const [markers, setMarkers] = React.useState<LatLngExpression[]>([]);
+
+	const getGPSDatas = (datas: CinemaObject[]) => {
+		const GPSArray = datas.map(elt => elt.gps);
+		console.log(GPSArray);
+		const formattedArray: LatLngExpression[] = [];
+		GPSArray.forEach(gps => {
+			const [long, lat] = gps.split(";");
+			formattedArray.push([parseFloat(long), parseFloat(lat)]);
+		});
+		console.log(formattedArray);
+		setMarkers(formattedArray);
+	};
+
+	useEffect(() => {
+		const fetchCinemas = async () => {
+			try {
+				console.log("Intialisation de l'appel API");
+				console.log("....");
+				console.log("définition de l'adresse cible : 'https://cinehub-dev-backend.codevert.org/cinemas'");
+				console.log("....");
+				const objRequest: RequestInit = {
+					method: "GET",
+					headers: {
+						Accept: "application/json",
+						"Content-Type": "application/json",
+					},
+				};
+				const response = await fetch("https://cinehub-dev-backend.codevert.org/cinemas", objRequest);
+				const data = await response.json();
+				setDatas(data);
+				getGPSDatas(data);
+			} catch (error) {
+				console.error(error);
+			}
+		};
+		fetchCinemas();
+	}, []);
 
 	const [personName, setPersonName] = React.useState<string[]>([]);
 	const [personName2, setPersonName2] = React.useState<string[]>([]);
@@ -104,13 +169,15 @@ const MovieTheater: React.FC = () => {
 		);
 	};
 
-	const position: LatLngExpression = [45.50268784231722, -73.61823722698573];
+	const position: LatLngExpression = [46.81293938102650, -71.22127317412945];
 
 	return (
 		<Grid
 			container
-			sx={{ marginTop: "1rem",height:"calc(100vh - 135px)", gap:"2rem", width:"100vw", justifyContent:"center" }}>
-			<Grid container xs={3} >
+			sx={{ marginTop: "1rem", height: "calc(100vh - 135px)", gap: "2rem", width: "100vw", justifyContent: "center" }}>
+			<Grid
+				container
+				xs={3}>
 				<TextField
 					id="searchbar"
 					label="Barre de recherche"
@@ -146,30 +213,30 @@ const MovieTheater: React.FC = () => {
 					<Grid
 						item
 						xs={6}>
-							<FormControl fullWidth>
-								<InputLabel id="demo2">Filtre 2</InputLabel>
-								<Select
-									labelId="demo2"
-									id="demo2"
-									fullWidth
-									value={personName2}
-									onChange={handleChange2}
-									input={<OutlinedInput label="Name" />}
-									MenuProps={MenuProps}>
-									{names2.map(name => (
-										<MenuItem
-											key={name}
-											value={name}>
-											{name}
-										</MenuItem>
-									))}
-								</Select>
-							</FormControl>
+						<FormControl fullWidth>
+							<InputLabel id="demo2">Filtre 2</InputLabel>
+							<Select
+								labelId="demo2"
+								id="demo2"
+								fullWidth
+								value={personName2}
+								onChange={handleChange2}
+								input={<OutlinedInput label="Name" />}
+								MenuProps={MenuProps}>
+								{names2.map(name => (
+									<MenuItem
+										key={name}
+										value={name}>
+										{name}
+									</MenuItem>
+								))}
+							</Select>
+						</FormControl>
 					</Grid>
 
 					<Grid
 						item
-						sx={{marginTop:"2rem"}}
+						sx={{ marginTop: "2rem" }}
 						xs={6}>
 						<FormControl fullWidth>
 							<InputLabel id="demo3">Distance</InputLabel>
@@ -193,49 +260,53 @@ const MovieTheater: React.FC = () => {
 					</Grid>
 					<Grid
 						item
-						sx={{marginTop:"2rem"}}
+						sx={{ marginTop: "2rem" }}
 						xs={6}>
-							<FormControl fullWidth>
-								<InputLabel id="demo4">Dispositifs</InputLabel>
-								<Select
-									labelId="demo4"
-									id="demo4"
-									fullWidth
-									value={personName4}
-									onChange={handleChange4}
-									input={<OutlinedInput label="Name" />}
-									MenuProps={MenuProps}>
-									{names4.map(name => (
-										<MenuItem
-											key={name}
-											value={name}>
-											{name}
-										</MenuItem>
-									))}
-								</Select>
-							</FormControl>
+						<FormControl fullWidth>
+							<InputLabel id="demo4">Dispositifs</InputLabel>
+							<Select
+								labelId="demo4"
+								id="demo4"
+								fullWidth
+								value={personName4}
+								onChange={handleChange4}
+								input={<OutlinedInput label="Name" />}
+								MenuProps={MenuProps}>
+								{names4.map(name => (
+									<MenuItem
+										key={name}
+										value={name}>
+										{name}
+									</MenuItem>
+								))}
+							</Select>
+						</FormControl>
 					</Grid>
 				</Grid>
 				<MapContainer
 					className="mapContainer"
 					center={position}
-					zoom={13}
+					zoom={12}
 					scrollWheelZoom={true}>
 					<TileLayer
 						attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 					/>
-					<Marker position={position}>
+					{markers.map((position, index) => (
+					<Marker key={index} position={position}>
 						<Popup>
-							Cinéma de l'université. <br /> Batiment C, 2ème étage.
+							<img style={{width:"100%"}} src={datasOld[index].image} />
+						<br />
+							{datas[index].name} <br /> {datas[index].address1}.
 						</Popup>
 					</Marker>
+					))}
 				</MapContainer>
 			</Grid>
 			<Grid
 				container
 				xs={8}>
-				{datas.map(obj => (
+				{datas.map((obj, i) => (
 					<Grid
 						item
 						xs={4}>
@@ -243,12 +314,20 @@ const MovieTheater: React.FC = () => {
 							<CardActionArea>
 								<CardMedia
 									component="img"
-									height="300"
-									image={obj.image}
-									alt="green iguana"
+									height="200"
+									image={datasOld[i].image}
+									alt={obj.description}
 								/>
 								<CardContent>
-									<Typography>{obj.name}</Typography>
+									<Typography
+										fontWeight="bolder"
+										component="h2">
+										{obj.name}
+									</Typography>
+									<Box sx={{ display: "flex", width: "100%", justifyContent: "space-between" }}>
+										<Typography>{obj.address1}</Typography>
+										<Typography>{obj.city}</Typography>
+									</Box>
 								</CardContent>
 							</CardActionArea>
 						</Card>
