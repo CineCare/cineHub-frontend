@@ -15,43 +15,9 @@ import illustrationDashboard from '../../assets/img/illustration-journal-de-bord
 import illustrationUserPrefs from '../../assets/img/illustration-preferences-utilisateur.jpg';
 import illustrationTheater from '../../assets/img/illustration-salle-cinema.jpg';
 import illustrationHub from '../../assets/img/illustration-repertoire-accessible.jpg';
-
-function SampleNextArrow(props: any) {
-	const { className, style, onClick } = props;
-	return (
-		<div
-			className={className}
-			style={{ ...style, display: "block", position: "fixed", right: "6rem" }}
-			onClick={onClick}
-		/>
-	);
-}
-
-function SamplePrevArrow(props: any) {
-	const { className, style, onClick } = props;
-	return (
-		<div
-			className={className}
-			style={{ ...style, position: "fixed", left: "2rem", display: "block" }}
-			onClick={onClick}
-		/>
-	);
-}
+import { settings } from "../../options/CarouselOptions";
 
 const Home: React.FC = () => {
-	const settings = {
-		dots: false,
-		infinite: true,
-		speed: 500,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		autoplay: true,
-		autoplaySpeed: 12000,
-		adaptiveHeight: false,
-		accessibility: true,
-		nextArrow: <SampleNextArrow />,
-		prevArrow: <SamplePrevArrow />,
-	};
 
 	return (
 		<Container maxWidth="xl">
@@ -71,7 +37,7 @@ const Home: React.FC = () => {
 						<Typography
 							variant="body1"
 							gutterBottom>
-							Notre mission ? Rassembler toutes les informations essentielles sur l’accessibilité dans les salles de cinéma du Québec, mettant en lumière et promouvant les établissements adoptant des
+							Notre mission ? Rassembler toutes les informations essentielles sur l’accessibilité dans les salles de cinéma ainsi que les maisons de production du Québec, mettant en lumière et promouvant les établissements adoptant des
 							pratiques inclusives. Cette initiative découle de recherches approfondies, de nombreuses rencontres enrichissantes et expériences, combinées au travail collaboratif de notre équipe.
 						</Typography>
 						<Typography
@@ -82,7 +48,7 @@ const Home: React.FC = () => {
 						<Typography
 							variant="body1"
 							gutterBottom>
-							Prêt.e à vivre pleinement votre passion pour le septième art ?
+							Prête, Prêt à vivre pleinement votre passion pour le septième art ?
 						</Typography>
 						<div>
 						<img

@@ -1,175 +1,112 @@
-import { Box, Card, CardActionArea, CardContent, CardMedia, FormControl, Grid, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
+import { Box, Card, CardActionArea, CardContent, CardMedia, Chip, FormControl, Grid, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
 import "./MovieTheaters.scss";
 import React, { useEffect } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { LatLngExpression } from "leaflet";
+import { AccessibilityObject, CinemaObject } from "../../Interfaces/Interfaces";
+import { fetchAccessibilities, fetchDatas } from "../../services/fetcher";
+import { genders, tags, distances, accessibilities, position } from "../../mockups/movieTheatersMockup";
+import { MenuProps } from "../../options/MUIOptions";
 
 const MovieTheater: React.FC = () => {
-	const ITEM_HEIGHT = 48;
-	const ITEM_PADDING_TOP = 8;
-	const MenuProps = {
-		PaperProps: {
-			style: {
-				maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-				width: 250,
-			},
-		},
-	};
-	const names = ["Oliver Hansen", "Van Henry", "April Tucker", "Ralph Hubbard", "Omar Alexander", "Carlos Abbott", "Miriam Wagner", "Bradley Wilkerson", "Virginia Andrews", "Kelly Snyder"];
-	const names2 = ["Billy Crawford", "Van Helsing", "April O' Neil", "Ralph La Casse", "Omar & Fred", "Carlos Santana", " Wagner & Mozart", "Bradley Cooper", "Virginia Grimaldia", "Kelly Rownie"];
-	const names3 = ["10km", "20km", "30km", "40km", "50km", "60km", "80km", "90km", "100km", "+100km"];
-	const names4 = ["PMR", "Casque", "Braille", "Audio description", "Place adaptée"];
-	const datasOld = [
-		{
-			name: "Cinema 1",
-			utilities: [],
-			address: "402, Avenue Timùut",
-			image: "https://i.ibb.co/Sv45XNR/meduse-vue-exterieure-de-meduse.jpg",
-		},
-		{
-			name: "Cinema 2",
-			utilities: [],
-			address: "402, Avenue Timùut",
-			image: "https://i.ibb.co/wWm5TMr/cinema-cartier-is-on.jpg",
-		},
-		{
-			name: "Cinema 3",
-			utilities: [],
-			address: "402, Avenue Timùut",
-			image: "https://aws-tiqets-cdn.imgix.net/images/content/ee95e375eeb04bfc96cb9aa6e2b7455d.jpg?auto=format&fit=crop&h=800&ixlib=python-3.2.1&q=70&w=800&s=a10ed51e6e26cd6ddc2a56f0f02fc790",
-		},
-		{
-			name: "Cinema 4",
-			utilities: [],
-			address: "402, Avenue Timùut",
-			image: "https://m1.quebecormedia.com/emp/jdx-prod-images/8f7bcb9f-c099-4fe4-9704-16e1886225b1_JDX-NO-RATIO_WEB.jpg?impolicy=resize&quality=80&width=1400",
-		},
-		{
-			name: "Cineplex Odeon - Quartier latin",
-			utilities: [],
-			address: "350, rue Émery, Montréal, QC H2X 1J1",
-			image: "https://lh3.googleusercontent.com/p/AF1QipNH4EGRYjOTMsjL4BrakvbM-PcDlZvd9h4SyGFT=s1600-w640",
-		},
-		{
-			name: "Cinema Guzzo Méga-Plex",
-			utilities: [],
-			address: "5940, des Grandes Prairies, Montréal (Québec), H1P 1A4",
-			image: "https://photos.cinematreasures.org/production/photos/215322/1501695859/large.jpg?1501695859",
-		},
-	];
-
-	type AccessibilityObject = {
-		id: number;
-		name: string;
-		description: string;
-		audio: string;
-		picto: string;
-	};
-	type CinemaObject = {
-		id: number;
-		name: string;
-		address1: string;
-		address2?: string;
-		city: string;
-		postalCode: string;
-		email: string;
-		phone: string;
-		photo?: string;
-		gps: string;
-		description?: string;
-		audio?: string;
-		createdAt: string;
-		updatedAt: string;
-		accessibilities: AccessibilityObject[];
-	};
-
+	const [accessibility, setAccessibility] = React.useState<string[]>([]);
+	const [accessibilityOptions, setAccessibilityOptions] = React.useState<AccessibilityObject[]>([]);
 	const [datas, setDatas] = React.useState<CinemaObject[]>([]);
+	const [distance, setDistance] = React.useState<string[]>([]);
+	const [gender, setGender] = React.useState<string[]>([]);
 	const [markers, setMarkers] = React.useState<LatLngExpression[]>([]);
+	const [tag, setTag] = React.useState<string[]>([]);
 
-	const getGPSDatas = (datas: CinemaObject[]) => {
-		const GPSArray = datas.map(elt => elt.gps);
-		console.log(GPSArray);
+	/**
+	 * La fonction `getGPSDatas` prend un tableau d'objets avec des coordonnées GPS et extrait les valeurs
+	 * de longitude et de latitude pour créer un tableau d'objets LatLngExpression.
+	 * @param {CinemaObject[]} datas - CinemaObject[] - un tableau d'objets représentant des données de
+	 * cinéma. Chaque objet doit avoir une propriété nommée «gps» qui contient les coordonnées GPS au
+	 * format «longitude;latitude».
+	 */
+	const getGPSDatas = (datas: CinemaObject[]): void => {
 		const formattedArray: LatLngExpression[] = [];
+		const GPSArray = datas.map(elt => elt.gps);
 		GPSArray.forEach(gps => {
 			const [long, lat] = gps.split(";");
 			formattedArray.push([parseFloat(long), parseFloat(lat)]);
 		});
-		console.log(formattedArray);
 		setMarkers(formattedArray);
 	};
 
+	/**
+	 * La fonction `handleGenderChange` prend un événement et met à jour l'état de genre en fonction de la
+	 * valeur sélectionnée.
+	 * @param event - Le paramètre `event` est un objet représentant l'événement qui s'est produit, en
+	 * particulier un événement `SelectChangeEvent` lié à l'état `gender`.
+	 */
+	const handleGenderChange = (event: SelectChangeEvent<typeof gender>): void => {
+		event.stopPropagation();
+		const {
+			target: { value },
+		} = event;
+		setGender(typeof value === "string" ? value.split(",") : value);
+	};
+
+	/**
+	 * La fonction `handleTagChange` prend un SelectChangeEvent et met à jour l'état de la balise en
+	 * fonction de la valeur sélectionnée.
+	 * @param event - Le paramètre `event` est un objet qui représente l'événement déclenché lorsque la
+	 * valeur d'une entrée de sélection change. Il est de type `SelectChangeEvent<typeof tag>`, ce qui
+	 * indique qu'il s'agit d'un événement de changement de sélection spécifique au type `tag`.
+	 */
+	const handleTagChange = (event: SelectChangeEvent<typeof tag>): void => {
+		event.stopPropagation();
+		const {
+			target: { value },
+		} = event;
+		setTag(typeof value === "string" ? value.split(",") : value);
+	};
+
+	/**
+	 * La fonction `handleDistanceChange` prend un événement et met à jour l'état de distance en fonction
+	 * de la valeur de l'événement.
+	 * @param event - Le paramètre `event` est de type `SelectChangeEvent` avec un type générique de
+	 * `typeof distance`. Il s'agit d'un objet événement qui est déclenché lorsque la sélection de
+	 * distance change dans un champ de saisie de sélection.
+	 */
+	const handleDistanceChange = (event: SelectChangeEvent<typeof distance>): void => {
+		event.stopPropagation();
+		const {
+			target: { value },
+		} = event;
+		setDistance(typeof value === "string" ? value.split(",") : value);
+	};
+
+	/**
+	 * La fonction `handleAccessibilityChange` gère les modifications des options
+	 * d'accessibilité en mettant à jour l'état avec les valeurs sélectionnées.
+	 * @param event - Il s'agit d'un objet événement qui est déclenché lorsque la valeur
+	 * d'accessibilité change dans un champ de saisie de sélection.
+	 */
+	const handleAccessibilityChange = (event: SelectChangeEvent<typeof accessibility>): void => {
+		event.stopPropagation();
+		const {
+			target: { value },
+		} = event;
+		setAccessibility(typeof value === "string" ? value.split(",") : value);
+	};
+
 	useEffect(() => {
-		const fetchCinemas = async () => {
+		const initMovieTheaters = async () => {
 			try {
-				console.log("Intialisation de l'appel API");
-				console.log("....");
-				console.log("définition de l'adresse cible : 'https://cinehub-dev-backend.codevert.org/cinemas'");
-				console.log("....");
-				const objRequest: RequestInit = {
-					method: "GET",
-					headers: {
-						Accept: "application/json",
-						"Content-Type": "application/json",
-					},
-				};
-				const response = await fetch("https://cinehub-dev-backend.codevert.org/cinemas", objRequest);
-				const data = await response.json();
+				const data = await fetchDatas();
 				setDatas(data);
 				getGPSDatas(data);
+				const accessibilities = await fetchAccessibilities();
+				setAccessibilityOptions(accessibilities);
+				console.log(accessibilityOptions);
 			} catch (error) {
 				console.error(error);
 			}
 		};
-		fetchCinemas();
+		initMovieTheaters();
 	}, []);
-
-	const [personName, setPersonName] = React.useState<string[]>([]);
-	const [personName2, setPersonName2] = React.useState<string[]>([]);
-	const [personName3, setPersonName3] = React.useState<string[]>([]);
-	const [personName4, setPersonName4] = React.useState<string[]>([]);
-
-	const handleChange = (event: SelectChangeEvent<typeof personName>) => {
-		event.stopPropagation();
-		const {
-			target: { value },
-		} = event;
-		setPersonName(
-			// On autofill we get a stringified value.
-			typeof value === "string" ? value.split(",") : value
-		);
-	};
-	const handleChange2 = (event: SelectChangeEvent<typeof personName2>) => {
-		event.stopPropagation();
-		const {
-			target: { value },
-		} = event;
-		setPersonName2(
-			// On autofill we get a stringified value.
-			typeof value === "string" ? value.split(",") : value
-		);
-	};
-	const handleChange3 = (event: SelectChangeEvent<typeof personName3>) => {
-		event.stopPropagation();
-		const {
-			target: { value },
-		} = event;
-		setPersonName3(
-			// On autofill we get a stringified value.
-			typeof value === "string" ? value.split(",") : value
-		);
-	};
-	const handleChange4 = (event: SelectChangeEvent<typeof personName4>) => {
-		event.stopPropagation();
-		const {
-			target: { value },
-		} = event;
-		setPersonName4(
-			// On autofill we get a stringified value.
-			typeof value === "string" ? value.split(",") : value
-		);
-	};
-
-	const position: LatLngExpression = [46.81293938102650, -71.22127317412945];
 
 	return (
 		<Grid
@@ -191,20 +128,20 @@ const MovieTheater: React.FC = () => {
 						item
 						xs={6}>
 						<FormControl fullWidth>
-							<InputLabel id="demo1">Genre</InputLabel>
+							<InputLabel id="gender">Genre</InputLabel>
 							<Select
 								labelId="demo1"
 								id="demo1"
 								fullWidth
-								value={personName}
-								onChange={handleChange}
-								input={<OutlinedInput label="Name" />}
+								value={gender}
+								onChange={handleGenderChange}
+								input={<OutlinedInput label="Gender" />}
 								MenuProps={MenuProps}>
-								{names.map(name => (
+								{genders.map(elt => (
 									<MenuItem
-										key={name}
-										value={name}>
-										{name}
+										key={elt}
+										value={elt}>
+										{elt}
 									</MenuItem>
 								))}
 							</Select>
@@ -214,20 +151,20 @@ const MovieTheater: React.FC = () => {
 						item
 						xs={6}>
 						<FormControl fullWidth>
-							<InputLabel id="demo2">Filtre 2</InputLabel>
+							<InputLabel id="tags">Tags</InputLabel>
 							<Select
-								labelId="demo2"
-								id="demo2"
+								labelId="tags"
+								id="tags"
 								fullWidth
-								value={personName2}
-								onChange={handleChange2}
-								input={<OutlinedInput label="Name" />}
+								value={tag}
+								onChange={handleTagChange}
+								input={<OutlinedInput label="tag" />}
 								MenuProps={MenuProps}>
-								{names2.map(name => (
+								{tags.map(elt => (
 									<MenuItem
-										key={name}
-										value={name}>
-										{name}
+										key={elt}
+										value={elt}>
+										{elt}
 									</MenuItem>
 								))}
 							</Select>
@@ -244,15 +181,15 @@ const MovieTheater: React.FC = () => {
 								labelId="demo3"
 								id="demo3"
 								fullWidth
-								value={personName3}
-								onChange={handleChange3}
-								input={<OutlinedInput label="Name" />}
+								value={distance}
+								onChange={handleDistanceChange}
+								input={<OutlinedInput label="distance" />}
 								MenuProps={MenuProps}>
-								{names3.map(name => (
+								{distances.map(elt => (
 									<MenuItem
-										key={name}
-										value={name}>
-										{name}
+										key={elt}
+										value={elt}>
+										{elt}
 									</MenuItem>
 								))}
 							</Select>
@@ -267,16 +204,17 @@ const MovieTheater: React.FC = () => {
 							<Select
 								labelId="demo4"
 								id="demo4"
+								multiple
 								fullWidth
-								value={personName4}
-								onChange={handleChange4}
-								input={<OutlinedInput label="Name" />}
+								value={accessibility}
+								onChange={handleAccessibilityChange}
+								input={<OutlinedInput label="accessibility" />}
 								MenuProps={MenuProps}>
-								{names4.map(name => (
+								{accessibilities.map(elt => (
 									<MenuItem
-										key={name}
-										value={name}>
-										{name}
+										key={elt}
+										value={elt}>
+										{elt}
 									</MenuItem>
 								))}
 							</Select>
@@ -293,20 +231,25 @@ const MovieTheater: React.FC = () => {
 						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 					/>
 					{markers.map((position, index) => (
-					<Marker key={index} position={position}>
-						<Popup>
-							<img style={{width:"100%"}} src={datasOld[index].image} />
-						<br />
-							{datas[index].name} <br /> {datas[index].address1}.
-						</Popup>
-					</Marker>
+						<Marker
+							key={index}
+							position={position}>
+							<Popup>
+								<img
+									style={{ width: "100%" }}
+									src={datas[index].photo}
+								/>
+								<br />
+								{datas[index].name} <br /> {datas[index].address1}.
+							</Popup>
+						</Marker>
 					))}
 				</MapContainer>
 			</Grid>
 			<Grid
 				container
 				xs={8}>
-				{datas.map((obj, i) => (
+				{datas.map(obj => (
 					<Grid
 						item
 						xs={4}>
@@ -315,18 +258,29 @@ const MovieTheater: React.FC = () => {
 								<CardMedia
 									component="img"
 									height="200"
-									image={datasOld[i].image}
+									image={obj.photo}
 									alt={obj.description}
 								/>
 								<CardContent>
-									<Typography
-										fontWeight="bolder"
-										component="h2">
-										{obj.name}
-									</Typography>
+									<Box sx={{ display: "flex", width: "100%", justifyContent: "space-between" }}>
+										<Typography
+											fontWeight="bolder"
+											component="h2">
+											{obj.name}
+										</Typography>
+										<Typography>{obj.city}</Typography>
+									</Box>
 									<Box sx={{ display: "flex", width: "100%", justifyContent: "space-between" }}>
 										<Typography>{obj.address1}</Typography>
-										<Typography>{obj.city}</Typography>
+										<Typography>{obj.postalCode}</Typography>
+									</Box>
+									<Box sx={{ display: "flex", width: "100%", justifyContent: "space-between" }}>
+										{obj.accessibilities.map(elt =>(
+											< Chip
+												label={elt.name}
+												variant="outlined"
+											/>
+										))}
 									</Box>
 								</CardContent>
 							</CardActionArea>
