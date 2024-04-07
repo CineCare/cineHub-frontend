@@ -7,17 +7,14 @@ import logoText from "../../assets/img/logo-text-white.svg";
 import Stack from "@mui/material/Stack";
 import { useTheme } from "../../contexts/ThemeContext";
 import { unreadableTheme, theme } from "../../styles/_themes";
-import { AccountCircle, Settings, ExitToApp, CameraOutdoor, MenuBook, MovieCreation, SmartToy, AutoFixHigh, AutoFixOff } from "@mui/icons-material";
+import { CameraOutdoor, MenuBook, MovieCreation, SmartToy, AutoFixHigh, AutoFixOff } from "@mui/icons-material";
 import { AppBar, Toolbar, Container, Button, Tooltip, IconButton, Menu, MenuItem, ListItemIcon, Divider, Typography, Box, Avatar, Hidden } from "@mui/material";
-
-const settings = ["Profil", "Mon compte", "Se déconnecter"];
+import { appBarHeight, iconMap, navbarSettings } from "../../options/GeneralOptions";
 
 const Navbar: React.FC = () => {
 	const { darkMode, toggleDarkMode } = useTheme();
 	const chosenTheme = darkMode ? unreadableTheme : theme;
 	const secondaryColor = chosenTheme.palette.secondary.main;
-
-	const appBarHeight = "4rem";
 
 	const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 	const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
@@ -26,12 +23,6 @@ const Navbar: React.FC = () => {
 	const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => setAnchorElUser(event.currentTarget);
 	const handleCloseNavMenu = () => setAnchorElNav(null);
 	const handleCloseUserMenu = () => setAnchorElUser(null);
-
-	const iconMap: { [key: string]: JSX.Element } = {
-		"Mon compte": <Settings />,
-		Profil: <AccountCircle />,
-		"Se déconnecter": <ExitToApp />,
-	};
 
 	return (
 		<AppBar position="static">
@@ -208,7 +199,7 @@ const Navbar: React.FC = () => {
 							}}
 							open={Boolean(anchorElUser)}
 							onClose={handleCloseUserMenu}>
-							{settings.map((setting, index) => (
+							{navbarSettings.map((setting, index) => (
 								<div key={setting}>
 									<MenuItem onClick={handleCloseUserMenu}>
 										<ListItemIcon>{iconMap[setting]}</ListItemIcon>

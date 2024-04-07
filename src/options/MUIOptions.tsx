@@ -1,5 +1,6 @@
 const ITEM_HEIGHT = 78;
 const ITEM_PADDING_TOP = 25;
+
 export const MenuProps = {
 	PaperProps: {
 		style: {

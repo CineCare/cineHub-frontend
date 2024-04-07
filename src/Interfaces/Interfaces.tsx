@@ -1,37 +1,51 @@
+import { ReactNode } from "react";
+
 type AccessibilityObject = {
-  id: number;
-  name: string;
-  description: string;
-  audio: string;
-  picto: string;
+  audio         : string;
+  description   : string;
+  id            : number;
+  name          : string;
+  picto         : string;
 };
 
 type CinemaObject = {
-  id: number;
-  name: string;
-  address1: string;
-  address2?: string;
-  city: string;
-  postalCode: string;
-  email: string;
-  phone: string;
-  photo?: string;
-  gps: string;
-  description?: string;
-  audio?: string;
-  createdAt: string;
-  updatedAt: string;
-  accessibilities: AccessibilityObject[];
+  accessibilities : AccessibilityObject[];
+  address1        : string;
+  address2?       : string;
+  audio?          : string;
+  city            : string;
+  createdAt       : string;
+  description?    : string;
+  email           : string;
+  gps             : string;
+  id              : number;
+  name            : string;
+  phone           : string;
+  photo?          : string;
+  postalCode      : string;
+  updatedAt       : string;
 };
 
 interface ArrowProps {
-  className?: string;
-  style?: React.CSSProperties;
-  onClick?: () => void;
+  className?    : string;
+  onClick?      : () => void;
+  style?        : React.CSSProperties;
 }
 
+interface ThemeContextType {
+  darkMode: boolean;
+  toggleDarkMode: () => void;
+}
+
+interface ThemeProviderProps {
+  children: ReactNode;
+}
+
+
 export type {
-  CinemaObject,
   AccessibilityObject,
   ArrowProps,
+  CinemaObject,
+  ThemeContextType,
+  ThemeProviderProps
 }
