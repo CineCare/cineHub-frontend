@@ -18,7 +18,17 @@ const Filter: React.FC = () => {
 		setOpen(false);
 	};
 
-	const handleChangeFontSize = (_event: Event, newValue: number | number[]) => {
+/**
+ * La fonction handleChangeFontSize met à jour la taille de la police en fonction d'une nouvelle
+ * valeur.
+ * @param {Event} _event - Le paramètre `_event` est un objet événement qui représente l'événement qui
+ * a déclenché le changement de taille de police. Il peut s'agir d'un événement de clic, d'un événement
+ * d'entrée ou de tout autre type d'événement que la fonction écoute.
+ * @param {number | number[]} newValue - Le paramètre `newValue` dans la fonction
+ * `handleChangeFontSize` est la nouvelle valeur de taille de police qui sera définie lorsque la taille
+ * de police est modifiée. Il peut s'agir d'un nombre unique ou d'un tableau de nombres.
+ */
+const handleChangeFontSize = (_event: Event, newValue: number | number[]) => {
 		setFontSize(newValue as number);
 	};
 
@@ -251,3 +261,4 @@ const Filter: React.FC = () => {
 };
 
 export default Filter;
+
