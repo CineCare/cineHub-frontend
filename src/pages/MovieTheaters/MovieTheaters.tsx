@@ -1,4 +1,4 @@
-import { Box, Card, CardActionArea, CardContent, CardMedia, Chip, FormControl, Grid, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
+import {  FormControl, Grid, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent, TextField } from "@mui/material";
 import "./MovieTheaters.scss";
 import React, { useEffect } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
@@ -7,6 +7,7 @@ import { AccessibilityObject, CinemaObject } from "../../Interfaces/Interfaces";
 import { fetchDatas } from "../../services/fetcher";
 import { genders, tags, distances, accessibilities, position } from "../../mockups/movieTheatersMockup";
 import { MenuProps } from "../../options/MUIOptions";
+import CinemaCard from '../../components/CinemaCard/CinemaCard';
 
 const MovieTheater: React.FC = () => {
 	
@@ -42,7 +43,6 @@ const MovieTheater: React.FC = () => {
 	 * particulier un événement `SelectChangeEvent` lié à l'état `gender`.
 	 */
 	const handleGenderChange = (event: SelectChangeEvent<typeof gender>): void => {
-		event.stopPropagation();
 		const {
 			target: { value },
 		} = event;
@@ -93,6 +93,8 @@ const MovieTheater: React.FC = () => {
 		setAccessibility(typeof value === "string" ? value.split(",") : value);
 	};
 
+
+
 	useEffect(() => {
 		const initMovieTheaters = async () => {
 			try {
@@ -112,13 +114,13 @@ const MovieTheater: React.FC = () => {
 	return (
 		<Grid
 			container
-			sx={{ marginTop: "1rem", height: "calc(100vh - 135px)", gap: "2rem", width: "100vw", justifyContent: "center" }}>
+			sx={{ marginTop: "1rem", height: "calc(100vh - 135px)", gap: "2rem", justifyContent: "center" }}>
 			<Grid
 				container
 				xs={3}>
 				<TextField
 					id="searchbar"
-					label="Barre de recherche"
+					label="Rechercher une salle"
 					fullWidth
 				/>
 				<Grid
@@ -129,11 +131,12 @@ const MovieTheater: React.FC = () => {
 						item
 						xs={6}>
 						<FormControl fullWidth>
-							<InputLabel id="gender">Genre</InputLabel>
+							<InputLabel id="gender">Equipement</InputLabel>
 							<Select
 								labelId="demo1"
 								id="demo1"
 								fullWidth
+								multiple
 								value={gender}
 								onChange={handleGenderChange}
 								input={<OutlinedInput label="Gender" />}
@@ -152,11 +155,12 @@ const MovieTheater: React.FC = () => {
 						item
 						xs={6}>
 						<FormControl fullWidth>
-							<InputLabel id="tags">Tags</InputLabel>
+							<InputLabel id="tags">Langues</InputLabel>
 							<Select
 								labelId="tags"
 								id="tags"
 								fullWidth
+								multiple
 								value={tag}
 								onChange={handleTagChange}
 								input={<OutlinedInput label="tag" />}
@@ -186,6 +190,7 @@ const MovieTheater: React.FC = () => {
 								onChange={handleDistanceChange}
 								input={<OutlinedInput label="distance" />}
 								MenuProps={MenuProps}>
+								<MenuItem value="">Aucune</MenuItem>
 								{distances.map(elt => (
 									<MenuItem
 										key={elt}
@@ -249,44 +254,10 @@ const MovieTheater: React.FC = () => {
 			</Grid>
 			<Grid
 				container
-				xs={8}>
-				{cinemas.map(obj => (
-					<Grid
-						item
-						xs={4}>
-						<Card sx={{ maxWidth: 400 }}>
-							<CardActionArea>
-								<CardMedia
-									component="img"
-									height="200"
-									image={obj.photo}
-									alt={obj.description}
-								/>
-								<CardContent>
-									<Box sx={{ display: "flex", width: "100%", justifyContent: "space-between" }}>
-										<Typography
-											fontWeight="bolder"
-											component="h2">
-											{obj.name}
-										</Typography>
-										<Typography>{obj.city}</Typography>
-									</Box>
-									<Box sx={{ display: "flex", width: "100%", justifyContent: "space-between" }}>
-										<Typography>{obj.address1}</Typography>
-										<Typography>{obj.postalCode}</Typography>
-									</Box>
-									<Box sx={{ display: "flex", width: "100%", justifyContent: "space-between" }}>
-										{obj.accessibilities.map(elt =>(
-											< Chip
-												label={elt.name}
-												variant="outlined"
-											/>
-										))}
-									</Box>
-								</CardContent>
-							</CardActionArea>
-						</Card>
-					</Grid>
+				xs={8}
+				spacing={2}>
+				{cinemas.map((cinema, index) => (
+					<CinemaCard key={index} cinema={cinema} />
 				))}
 			</Grid>
 		</Grid>

@@ -18,16 +18,6 @@ const Filter: React.FC = () => {
 		setOpen(false);
 	};
 
-/**
- * La fonction handleChangeFontSize met à jour la taille de la police en fonction d'une nouvelle
- * valeur.
- * @param {Event} _event - Le paramètre `_event` est un objet événement qui représente l'événement qui
- * a déclenché le changement de taille de police. Il peut s'agir d'un événement de clic, d'un événement
- * d'entrée ou de tout autre type d'événement que la fonction écoute.
- * @param {number | number[]} newValue - Le paramètre `newValue` dans la fonction
- * `handleChangeFontSize` est la nouvelle valeur de taille de police qui sera définie lorsque la taille
- * de police est modifiée. Il peut s'agir d'un nombre unique ou d'un tableau de nombres.
- */
 const handleChangeFontSize = (_event: Event, newValue: number | number[]) => {
 		setFontSize(newValue as number);
 	};
@@ -100,8 +90,11 @@ const handleChangeFontSize = (_event: Event, newValue: number | number[]) => {
 											value={selectedFont}
 											onChange={handleChangeFont}
 											fullWidth>
-											<MenuItem value="option1">Option 1</MenuItem>
-											<MenuItem value="option2">Option 2</MenuItem>
+											<MenuItem value="option1">Roboto</MenuItem>
+											<MenuItem value="option2">Arial</MenuItem>
+											<MenuItem value="option3">Cookie</MenuItem>
+											<MenuItem value="option4">handstyle</MenuItem>
+											<MenuItem value="option5">Dys</MenuItem>
 										</Select>
 									</Grid>
 									<Grid
@@ -113,8 +106,12 @@ const handleChangeFontSize = (_event: Event, newValue: number | number[]) => {
 											value={selectedColor}
 											onChange={handleChangeColor}
 											fullWidth>
-											<MenuItem value="option1">Option 1</MenuItem>
-											<MenuItem value="option2">Option 2</MenuItem>
+											<MenuItem value="option1">Claires</MenuItem>
+											<MenuItem value="option2">Foncées</MenuItem>
+											<MenuItem value="option3">Vives</MenuItem>
+											<MenuItem value="option4">Pastelles</MenuItem>
+											<MenuItem value="option5">Noir et blanc</MenuItem>
+											<MenuItem value="option6">Contraste élevés</MenuItem>
 										</Select>
 									</Grid>
 								</Grid>
