@@ -34,6 +34,11 @@ export const theme = createTheme({
 		h6: {
 			fontFamily: "Roboto",
 		},
+		body1: {
+			fontFamily: "Roboto",
+			fontSize: 18,
+
+		},
 	},
 });
 

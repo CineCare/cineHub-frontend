@@ -18,7 +18,7 @@ const Filter: React.FC = () => {
 		setOpen(false);
 	};
 
-	const handleChangeFontSize = (_event: Event, newValue: number | number[]) => {
+const handleChangeFontSize = (_event: Event, newValue: number | number[]) => {
 		setFontSize(newValue as number);
 	};
 
@@ -90,8 +90,11 @@ const Filter: React.FC = () => {
 											value={selectedFont}
 											onChange={handleChangeFont}
 											fullWidth>
-											<MenuItem value="option1">Option 1</MenuItem>
-											<MenuItem value="option2">Option 2</MenuItem>
+											<MenuItem value="option1">Roboto</MenuItem>
+											<MenuItem value="option2">Arial</MenuItem>
+											<MenuItem value="option3">Cookie</MenuItem>
+											<MenuItem value="option4">handstyle</MenuItem>
+											<MenuItem value="option5">Dys</MenuItem>
 										</Select>
 									</Grid>
 									<Grid
@@ -103,8 +106,12 @@ const Filter: React.FC = () => {
 											value={selectedColor}
 											onChange={handleChangeColor}
 											fullWidth>
-											<MenuItem value="option1">Option 1</MenuItem>
-											<MenuItem value="option2">Option 2</MenuItem>
+											<MenuItem value="option1">Claires</MenuItem>
+											<MenuItem value="option2">Foncées</MenuItem>
+											<MenuItem value="option3">Vives</MenuItem>
+											<MenuItem value="option4">Pastelles</MenuItem>
+											<MenuItem value="option5">Noir et blanc</MenuItem>
+											<MenuItem value="option6">Contraste élevés</MenuItem>
 										</Select>
 									</Grid>
 								</Grid>
@@ -251,3 +258,4 @@ const Filter: React.FC = () => {
 };
 
 export default Filter;
+
