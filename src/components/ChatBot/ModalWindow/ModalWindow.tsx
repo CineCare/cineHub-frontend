@@ -1,12 +1,20 @@
 import React, { useState } from "react";
-import "./ModalWindow.scss";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+  TextField,
+} from "@mui/material";
 import ConversationHandler from "../ConversationHandler/ConversationHandler";
 
 interface ModalProps {
   visible: boolean;
+  onClose: () => void;
 }
 
-const ModalWindow: React.FC<ModalProps> = (props) => {
+const ModalWindow: React.FC<ModalProps> = ({ visible, onClose }) => {
   const [questionsAndResponses, setQuestionsAndResponses] = useState<
     Array<{ question: string; response: JSX.Element | string }>
   >([]);
@@ -20,45 +28,66 @@ const ModalWindow: React.FC<ModalProps> = (props) => {
   };
 
   return (
-    <div
-      style={{
-        opacity: props.visible ? "1" : "0",
-      }}
-      className="modalWindow"
+    <Dialog
+      open={visible}
+      onClose={onClose}
+      fullWidth
+      maxWidth="lg"
+      aria-labelledby="modal-title"
+      aria-describedby="modal-description"
     >
-      <h4>Votre Assistant Virtuel</h4>
-      <div className="question-response-container">
-        {questionsAndResponses.map((item, index) => (
-          <div key={index} className="question-response">
-            <div className="question">
-              <strong>Vous</strong> {item.question}
+      <DialogTitle id="modal-title">Votre Assistant Virtuel</DialogTitle>
+      <DialogContent>
+        <div className="question-response-container">
+          {questionsAndResponses.map((item, index) => (
+            <div key={index} className="question-response">
+              <div className="question">
+                <strong>Vous</strong> {item.question}
+              </div>
+              <div className="response">
+                <strong>Assistant</strong> {item.response}
+              </div>
             </div>
-            <div className="response">
-              <strong>Assistant</strong> {item.response}
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="input-container">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            const formData = new FormData(e.target as HTMLFormElement);
-            const question = formData.get("question") as string;
-            if (question.trim() !== "") {
-              handleQuestionSubmit(question);
-            }
+          ))}
+        </div>
+        <div className="input-container">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              const formData = new FormData(e.target as HTMLFormElement);
+              const question = formData.get("question") as string;
+              if (question.trim() !== "") {
+                handleQuestionSubmit(question);
+              }
+            }}
+          >
+            <TextField
+              autoFocus
+              margin="dense"
+              id="question"
+              name="question"
+              label="Posez votre question..."
+              type="text"
+              fullWidth
+            />
+            <Button type="submit" variant="contained" color="primary">
+              Envoyer
+            </Button>
+          </form>
+        </div>
+      </DialogContent>
+      <DialogActions>
+        <Button
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
           }}
+          color="primary"
         >
-          <input
-            type="text"
-            name="question"
-            placeholder="Posez votre question..."
-          />
-          <button type="submit">Envoyer</button>
-        </form>
-      </div>
-    </div>
+          Fermer
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 };
 
