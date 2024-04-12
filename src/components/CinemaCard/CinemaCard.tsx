@@ -5,9 +5,18 @@ import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
 import EmailIcon from "@mui/icons-material/Email";
 import AudiotrackIcon from "@mui/icons-material/Audiotrack";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
+import PersonPinIcon from '@mui/icons-material/PersonPin';
 
 const CinemaCard: React.FC<{ cinema: CinemaObject }> = ({ cinema }) => {
 	const [flipped, setFlipped] = useState(false);
+
+	const formatDistance = (elt:string) =>{
+		const string = elt.split('.');
+		const first = parseInt(string[0]);
+		const unit = first < 2 ? 'km':'kms';
+		const stringToReturn = `${string[0]} ${unit} ${string[1]}`;
+		return stringToReturn;
+	}
 
 	const handleCardClick = () => {
 		setFlipped(!flipped);
@@ -73,6 +82,12 @@ const CinemaCard: React.FC<{ cinema: CinemaObject }> = ({ cinema }) => {
 								{cinema.name}
 							</Typography>
 							<Divider sx={{ marginBottom: "0.5rem" }} />
+							<Box sx={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+								<PersonPinIcon />
+								<Typography variant="body2" sx={{fontSize:"1rem"}}>
+									{formatDistance(cinema.distance)}
+								</Typography>
+							</Box>
 							<Box sx={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
 								<MyLocationIcon />
 								<Typography variant="body2" sx={{fontSize:"1rem"}}>
