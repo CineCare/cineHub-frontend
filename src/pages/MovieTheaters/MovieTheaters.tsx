@@ -1,23 +1,36 @@
-import {  FormControl, Grid, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent, TextField } from "@mui/material";
+import { FormControl, Grid, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
 import "./MovieTheaters.scss";
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import { LatLngExpression } from "leaflet";
+import L, { LatLngExpression } from "leaflet";
 import { AccessibilityObject, CinemaObject } from "../../Interfaces/Interfaces";
 import { fetchDatas } from "../../services/fetcher";
-import { genders, tags, distances, accessibilities, position } from "../../mockups/movieTheatersMockup";
+import { genders, tags, distances, accessibilities, positionMockup } from "../../mockups/movieTheatersMockup";
 import { MenuProps } from "../../options/MUIOptions";
-import CinemaCard from '../../components/CinemaCard/CinemaCard';
+import CinemaCard from "../../components/CinemaCard/CinemaCard";
+import { Marker as leafletMarker } from "leaflet";
 
 const MovieTheater: React.FC = () => {
+
+	const [showMarker, setShowMarker] = React.useState<boolean>(true);
+	const [position, setPosition] = React.useState<LatLngExpression>(positionMockup);
+	const [accessibility, setAccessibility] = React.useState<string[]>([]);
+	const [accessibilityOptions, setAccessibilityOptions] = React.useState<AccessibilityObject[]>([]);
+	const [cinemas, setCinemas] = React.useState<CinemaObject[]>([]);
+	const [distance, setDistance] = React.useState<string>('');
+	const [gender, setGender] = React.useState<string[]>([]);
+	const [markers, setMarkers] = React.useState<LatLngExpression[]>([]);
+	const [tag, setTag] = React.useState<string[]>([]);
+
+	const redIcon = new L.Icon({
+    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0/images/marker-shadow.png',
+  });
 	
-	const [accessibility, setAccessibility]                  = React.useState<string[]>([]);
-	const [accessibilityOptions, setAccessibilityOptions]    = React.useState<AccessibilityObject[]>([]);
-	const [cinemas, setCinemas]                              = React.useState<CinemaObject[]>([]);
-	const [distance, setDistance]                            = React.useState<string[]>([]);
-	const [gender, setGender]                                = React.useState<string[]>([]);
-	const [markers, setMarkers]                              = React.useState<LatLngExpression[]>([]);
-	const [tag, setTag]                                      = React.useState<string[]>([]);
 
 	/**
 	 * La fonction `getGPSDatas` prend un tableau d'objets avec des coordonnées GPS et extrait les valeurs
@@ -72,11 +85,10 @@ const MovieTheater: React.FC = () => {
 	 * distance change dans un champ de saisie de sélection.
 	 */
 	const handleDistanceChange = (event: SelectChangeEvent<typeof distance>): void => {
-		event.stopPropagation();
 		const {
 			target: { value },
 		} = event;
-		setDistance(typeof value === "string" ? value.split(",") : value);
+		setDistance( value);
 	};
 
 	/**
@@ -93,23 +105,44 @@ const MovieTheater: React.FC = () => {
 		setAccessibility(typeof value === "string" ? value.split(",") : value);
 	};
 
-
+	const markerRef = useRef<leafletMarker | null>(null);
+	const eventHandlers = useMemo(
+		() => ({
+			dragend() {
+				const marker = markerRef.current;
+				if (marker != null) {
+					setPosition(marker.getLatLng());
+					
+				}
+			},
+		}),
+		[]
+	);
 
 	useEffect(() => {
 		const initMovieTheaters = async () => {
 			try {
-				const datas = await fetchDatas('cinemas');
+				const datas = await fetchDatas("cinemas");
 				setCinemas(datas);
 				getGPSDatas(datas);
-				const accessibilities = await fetchDatas('accessibilities');
+				const accessibilities = await fetchDatas("accessibilities");
 				setAccessibilityOptions(accessibilities);
 				console.log(accessibilityOptions);
 			} catch (error) {
-				throw new Error;
+				throw new Error();
 			}
 		};
 		initMovieTheaters();
 	}, []);
+
+	useEffect(() => {
+		if (distance.length===0) {
+			setShowMarker(false)
+		} else {
+			setShowMarker(true)
+		}
+		console.log(position, distance);
+	}, [position, distance]);
 
 	return (
 		<Grid
@@ -236,6 +269,16 @@ const MovieTheater: React.FC = () => {
 						attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 						url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 					/>
+					{showMarker&&<Marker
+					icon={redIcon}
+						draggable={true}
+						eventHandlers={eventHandlers}
+						position={position}
+						ref={markerRef}>
+						<Popup minWidth={90}>
+							<Typography>Point de référence</Typography>
+						</Popup>
+					</Marker>}
 					{markers.map((position, index) => (
 						<Marker
 							key={index}
@@ -257,7 +300,10 @@ const MovieTheater: React.FC = () => {
 				xs={8}
 				spacing={2}>
 				{cinemas.map((cinema, index) => (
-					<CinemaCard key={index} cinema={cinema} />
+					<CinemaCard
+						key={index}
+						cinema={cinema}
+					/>
 				))}
 			</Grid>
 		</Grid>

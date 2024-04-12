@@ -24,6 +24,7 @@ type CinemaObject = {
   photo?          : string;
   postalCode      : string;
   updatedAt       : string;
+  distance: string;
 };
 
 interface ArrowProps {

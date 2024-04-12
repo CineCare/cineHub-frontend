@@ -1,3 +1,4 @@
+import { positionFetch } from "../mockups/movieTheatersMockup";
 /**
  * La fonction récupère les données du type passé en paramètre d'une URL spécifiée et les renvoie au format JSON.
  * @returns La fonction `fetchDatas` renvoie les données JSON récupérées à partir du point de
@@ -12,7 +13,7 @@ export async function fetchDatas(type:string) {
 				"Content-Type": "application/json",
 			},
 		};
-		const response = await fetch(`https://cinehub-dev-backend.codevert.org/${type}`, objRequest);
+		const response = await fetch(`https://cinehub-dev-backend.codevert.org/${type}?position=${positionFetch}`, objRequest);
 		return await response.json();
 	} catch (error) {
 		throw new Error;
