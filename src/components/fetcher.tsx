@@ -22,7 +22,7 @@ const CinemaList: React.FC = () => {
     const fetchCinemas = async () => {
       try {
         const response = await fetch(
-          "https://cinehub-dev-backend.codevert.org/cinemas?accessibility=prm"
+          "https://cinehub-dev-backend.codevert.org/cinemas"
         );
         if (!response.ok) {
           throw new Error("echec de récupération des cinémas");
