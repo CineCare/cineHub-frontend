@@ -24,7 +24,6 @@ import illustrationTheater from "../../assets/img/illustration-salle-cinema.jpg"
 import illustrationHub from "../../assets/img/illustration-repertoire-accessible.jpg";
 import { settings } from "../../options/CarouselOptions";
 
-import ChatBotWidget from "../../components/ChatBot/ChatBotWidget/ChatBotWidget";
 const Home: React.FC = () => {
   return (
     <Container maxWidth="xl">
@@ -223,7 +222,6 @@ const Home: React.FC = () => {
           </div>
         </Box>
       </Slider>
-      <ChatBotWidget />
     </Container>
   );
 };
