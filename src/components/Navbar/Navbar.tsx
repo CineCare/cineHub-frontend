@@ -2,25 +2,19 @@ import "./Navbar.scss";
 import React from "react";
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
 import logo from "../../assets/img/logo-base-white.svg";
 import logoText from "../../assets/img/logo-text-white.svg";
-import { AccountCircle, Settings, ExitToApp } from "@mui/icons-material";
-import { AppBar, Toolbar, Container, Button, Tooltip, TextField, IconButton, Menu, MenuItem, ListItemIcon, Divider, Typography, Box, Avatar, useTheme, Hidden } from "@mui/material";
-
-const pages = ["movie-theaters", "production-studios", "dashboard"];
-const pagesTranslation: { [key: string]: string } = {
-	"movie-theaters": "Salles de cinéma",
-	"production-studios": "Boîtes de production",
-	dashboard: "Journal de bord",
-};
-const settings = ["Profil", "Mon compte", "Se déconnecter"];
+import Stack from "@mui/material/Stack";
+import { useTheme } from "../../contexts/ThemeContext";
+import { unreadableTheme, theme } from "../../styles/_themes";
+import { CameraOutdoor, MenuBook, MovieCreation, SmartToy, AutoFixHigh, AutoFixOff } from "@mui/icons-material";
+import { AppBar, Toolbar, Container, Button, Tooltip, IconButton, Menu, MenuItem, ListItemIcon, Divider, Typography, Box, Avatar, Hidden } from "@mui/material";
+import { appBarHeight, iconMap, navbarSettings } from "../../options/GeneralOptions";
 
 const Navbar: React.FC = () => {
-	const theme = useTheme();
-	const secondaryColor = theme.palette.secondary.main;
-
-	const appBarHeight = "4rem";
+	const { darkMode, toggleDarkMode } = useTheme();
+	const chosenTheme = darkMode ? unreadableTheme : theme;
+	const secondaryColor = chosenTheme.palette.secondary.main;
 
 	const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 	const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
@@ -29,12 +23,6 @@ const Navbar: React.FC = () => {
 	const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => setAnchorElUser(event.currentTarget);
 	const handleCloseNavMenu = () => setAnchorElNav(null);
 	const handleCloseUserMenu = () => setAnchorElUser(null);
-
-	const iconMap: { [key: string]: JSX.Element } = {
-		"Mon compte": <Settings />,
-		Profil: <AccountCircle />,
-		"Se déconnecter": <ExitToApp />,
-	};
 
 	return (
 		<AppBar position="static">
@@ -46,7 +34,7 @@ const Navbar: React.FC = () => {
 							alt="Logo"
 							style={{ height: "2.5rem", marginRight: "0.75rem" }}
 						/>
-						<Hidden smDown>
+						<Hidden lgDown>
 							<img
 								src={logoText}
 								alt="Logo textuel"
@@ -54,17 +42,20 @@ const Navbar: React.FC = () => {
 							/>
 						</Hidden>
 					</Link>
-					<div style={{ flexGrow: 50, textAlign: "center" }}>
-						<TextField
-							id="search"
-							label="Rechercher"
-							variant="outlined"
-							size="small"
-							color="secondary"
-							InputProps={{
-								endAdornment: <SearchIcon />,
-							}}
-						/>
+					<button
+						onClick={toggleDarkMode}
+						className="magicBtn">
+						{darkMode ? <AutoFixHigh /> : <AutoFixOff />}
+					</button>
+					<div style={{ flexGrow: 50, textAlign: "end" }}>
+						<Button
+							startIcon={<SmartToy />}
+							sx={{
+								borderRadius: 0,
+								color: "white",
+							}}>
+							Mon assistant personnel
+						</Button>
 					</div>
 
 					<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -94,27 +85,49 @@ const Navbar: React.FC = () => {
 							sx={{
 								display: { xs: "block", md: "none" },
 							}}>
-							{pages.map(page => (
-								<MenuItem
-									key={page}
-									onClick={handleCloseNavMenu}>
-									<Typography textAlign="center">{page}</Typography>
-								</MenuItem>
-							))}
+							<MenuItem
+								component={Link}
+								to="/movie-theaters"
+								onClick={handleCloseNavMenu}>
+								<ListItemIcon>
+									<MovieCreation />
+								</ListItemIcon>
+								<Typography textAlign="center">Salles de cinéma</Typography>
+							</MenuItem>
+							<MenuItem
+								component={Link}
+								to="/production-studios"
+								onClick={handleCloseNavMenu}>
+								<ListItemIcon>
+									<CameraOutdoor />
+								</ListItemIcon>
+								<Typography textAlign="center">Boîtes de production</Typography>
+							</MenuItem>
+							<MenuItem
+								component={Link}
+								to="/dashboard"
+								onClick={handleCloseNavMenu}>
+								<ListItemIcon>
+									<MenuBook />
+								</ListItemIcon>
+								<Typography textAlign="center">Tableau de bord</Typography>
+							</MenuItem>
 						</Menu>
 					</Box>
 
 					<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-						{pages.map(page => (
+						<Stack
+							direction="row"
+							spacing={2}>
 							<Button
-								key={page}
+								key="movieTheaters"
 								component={Link}
 								onClick={handleCloseNavMenu}
-								to={`/${page.toLowerCase().replace(/\s/g, "-")}`}
+								to="/movie-theaters"
+								startIcon={<MovieCreation />}
 								sx={{
 									borderRadius: 0,
 									color: "white",
-									display: "block",
 									borderBottom: "2px solid transparent",
 									height: appBarHeight,
 									"&:hover": {
@@ -122,9 +135,45 @@ const Navbar: React.FC = () => {
 										backgroundColor: "transparent",
 									},
 								}}>
-								{pagesTranslation[page]}
+								Salles de cinéma
 							</Button>
-						))}
+							<Button
+								key="productionStudios"
+								component={Link}
+								onClick={handleCloseNavMenu}
+								to="/production-studios"
+								startIcon={<CameraOutdoor />}
+								sx={{
+									borderRadius: 0,
+									color: "white",
+									borderBottom: "2px solid transparent",
+									height: appBarHeight,
+									"&:hover": {
+										borderBottomColor: secondaryColor,
+										backgroundColor: "transparent",
+									},
+								}}>
+								Boîtes de production
+							</Button>
+							<Button
+								key="dashboard"
+								component={Link}
+								onClick={handleCloseNavMenu}
+								to="/dashboard"
+								startIcon={<MenuBook />}
+								sx={{
+									borderRadius: 0,
+									color: "white",
+									borderBottom: "2px solid transparent",
+									height: appBarHeight,
+									"&:hover": {
+										borderBottomColor: secondaryColor,
+										backgroundColor: "transparent",
+									},
+								}}>
+								Journal de bord
+							</Button>
+						</Stack>
 					</Box>
 
 					<Box sx={{ flexGrow: 0 }}>
@@ -136,7 +185,7 @@ const Navbar: React.FC = () => {
 							</IconButton>
 						</Tooltip>
 						<Menu
-							sx={{ mt: "45px" }}
+							sx={{ mt: "3.1rem" }}
 							id="menu-appbar"
 							anchorEl={anchorElUser}
 							anchorOrigin={{
@@ -150,7 +199,7 @@ const Navbar: React.FC = () => {
 							}}
 							open={Boolean(anchorElUser)}
 							onClose={handleCloseUserMenu}>
-							{settings.map((setting, index) => (
+							{navbarSettings.map((setting, index) => (
 								<div key={setting}>
 									<MenuItem onClick={handleCloseUserMenu}>
 										<ListItemIcon>{iconMap[setting]}</ListItemIcon>
