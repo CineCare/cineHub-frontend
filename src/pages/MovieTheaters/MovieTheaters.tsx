@@ -43,7 +43,7 @@ const MovieTheater: React.FC = () => {
 		const formattedArray: LatLngExpression[] = [];
 		const GPSArray = datas.map(elt => elt.gps);
 		GPSArray.forEach(gps => {
-			const [long, lat] = gps.split(";");
+			const [long, lat] = gps.split(",");
 			formattedArray.push([parseFloat(long), parseFloat(lat)]);
 		});
 		setMarkers(formattedArray);
