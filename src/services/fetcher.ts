@@ -7,7 +7,7 @@ import { positionMockup } from "../mockups/movieTheatersMockup";
 export async function fetchDatas(type: string, position?: string) {
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	// @ts-expect-error
-	const positionFetch = `${positionMockup.lat};${positionMockup.lng}`;
+	const positionFetch = `${positionMockup.lat},${positionMockup.lng}`;
 	try {
 		const objRequest: RequestInit = {
 			method: "GET",
