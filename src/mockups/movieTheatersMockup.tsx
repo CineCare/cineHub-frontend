@@ -1,6 +1,6 @@
 import { LatLngExpression } from "leaflet";
 
-const positionFetch: string = '46.83244185894426;-71.27689268322194';
+const positionFetch: string = '46.83244185894426,-71.27689268322194';
 const positionMockup: LatLngExpression = { lat: 46.83244185894426, lng: -71.27689268322194 };
 // const positionMockup: LatLngExpression = [46.83244185894426, -71.27689268322194];
 // const position: string = JSON.stringify([46.8129393810265, -71.22127317412945]);
