@@ -124,7 +124,7 @@ const MovieTheater: React.FC = () => {
 			try {
 				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 				// @ts-expect-error
-				const newPos = `${position.lat};${position.lng}`;
+				const newPos = `${position.lat},${position.lng}`;
 				const datas = await fetchDatas("cinemas",newPos);
 				setCinemas(datas);
 				getGPSDatas(datas);
