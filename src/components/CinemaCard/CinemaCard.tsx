@@ -5,29 +5,34 @@ import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
 import EmailIcon from "@mui/icons-material/Email";
 import AudiotrackIcon from "@mui/icons-material/Audiotrack";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
-import PersonPinIcon from '@mui/icons-material/PersonPin';
+import PersonPinIcon from "@mui/icons-material/PersonPin";
 import "./CinemaCard.scss";
 
-const CinemaCard: React.FC<{ cinema: CinemaObject, distance:number }> = ({ cinema, distance }) => {
+const CinemaCard: React.FC<{ cinema: CinemaObject; distance: number }> = ({ cinema, distance }) => {
 	const floatCinema = parseFloat(cinema.distance);
 	const hideClass = "hidden";
 	const [flipped, setFlipped] = useState(false);
 
-	const formatDistance = (elt:string) =>{
-		const string = elt.split('.');
+	const formatDistance = (elt: string) => {
+		const string = elt.split(".");
 		const first = parseInt(string[0]);
-		const unit = first < 2 ? 'km':'kms';
+		const unit = first < 2 ? "km" : "kms";
 		const stringToReturn = `${string[0]} ${unit} ${string[1]}`;
 		return stringToReturn;
-	}
+	};
+
+	const relocateMap = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, gps: string) => {
+		e.stopPropagation();
+		console.log(gps);
+	};
 
 	const handleCardClick = () => {
 		setFlipped(!flipped);
 	};
-	
+
 	return (
 		<Grid
-			className={(distance !== 0) && (floatCinema > distance )? hideClass : ''}
+			className={distance !== 0 && floatCinema > distance ? hideClass : ""}
 			item
 			xs={4}>
 			<Card
@@ -47,7 +52,7 @@ const CinemaCard: React.FC<{ cinema: CinemaObject, distance:number }> = ({ cinem
 								image={cinema.photo}
 								alt={cinema.description}
 							/>
-							<CardContent sx={{ backgroundColor: "rgba(0,0,0,0.65)", position: "absolute", bottom: "0", width: "100%", height: "25%", padding:0,paddingLeft:"0.5rem"  }}>
+							<CardContent sx={{ backgroundColor: "rgba(0,0,0,0.65)", position: "absolute", bottom: "0", width: "100%", height: "25%", padding: 0, paddingLeft: "0.5rem" }}>
 								<Typography
 									fontWeight="bolder"
 									variant="h6"
@@ -88,27 +93,39 @@ const CinemaCard: React.FC<{ cinema: CinemaObject, distance:number }> = ({ cinem
 							<Divider sx={{ marginBottom: "0.5rem" }} />
 							<Box sx={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
 								<PersonPinIcon />
-								<Typography variant="body2" sx={{fontSize:"1rem"}}>
+								<Typography
+									variant="body2"
+									sx={{ fontSize: "1rem" }}>
 									{formatDistance(cinema.distance)}
 								</Typography>
 							</Box>
-							<Box sx={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+							<Box
+								sx={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
+								onClick={event => relocateMap(event, cinema.gps)}>
 								<MyLocationIcon />
-								<Typography variant="body2" sx={{fontSize:"1rem"}}>
+								<Typography
+									variant="body2"
+									sx={{ fontSize: "1rem" }}>
 									{cinema.address1}, {cinema.postalCode}, {cinema.city}
 								</Typography>
 							</Box>
 							<Box sx={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
 								<ContactPhoneIcon />
-								<Typography sx={{fontSize:"1rem"}}> {cinema.phone}</Typography>
+								<Typography
+									sx={{ fontSize: "1rem" }}
+									onClick={e => e.stopPropagation()}>
+									<a href={`tel:${cinema.phone}`}>{cinema.phone}</a>
+								</Typography>
 							</Box>
 							<Box sx={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
 								<EmailIcon />
-								<Typography sx={{fontSize:"1rem"}}>{cinema.email ? cinema.email : "Aucune adresse mail"}</Typography>
+								<Typography sx={{ fontSize: "1rem" }}onClick={e => e.stopPropagation()}>
+									<a href={`mailto:${cinema.email ? cinema.email : ""}`}>{cinema.email ? cinema.email : "Aucune adresse mail"}</a>
+								</Typography>
 							</Box>
 							<Box sx={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
 								<AudiotrackIcon />
-								<Typography sx={{fontSize:"1rem"}}> {cinema.audio ? "oui" : "non"}</Typography>
+								<Typography sx={{ fontSize: "1rem" }}> {cinema.audio ? "oui" : "non"}</Typography>
 							</Box>
 							<Divider
 								sx={{ marginBottom: "0.5rem" }}

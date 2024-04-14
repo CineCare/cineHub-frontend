@@ -38,8 +38,6 @@ const CinemaList: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Cinemas</h1>
       <ul>
         {cinemas.map((cinema) => (
           <li key={cinema.id}>
@@ -47,7 +45,6 @@ const CinemaList: React.FC = () => {
           </li>
         ))}
       </ul>
-    </div>
   );
 };
 
