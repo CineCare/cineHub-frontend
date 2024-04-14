@@ -17,7 +17,7 @@ const MovieTheater: React.FC = () => {
 	const [accessibility, setAccessibility] = React.useState<string[]>([]);
 	const [accessibilityOptions, setAccessibilityOptions] = React.useState<AccessibilityObject[]>([]);
 	const [cinemas, setCinemas] = React.useState<CinemaObject[]>([]);
-	const [distance, setDistance] = React.useState<string>('');
+	const [distance, setDistance] = React.useState<number>(0);
 	const [gender, setGender] = React.useState<string[]>([]);
 	const [markers, setMarkers] = React.useState<LatLngExpression[]>([]);
 	const [tag, setTag] = React.useState<string[]>([]);
@@ -88,7 +88,7 @@ const MovieTheater: React.FC = () => {
 		const {
 			target: { value },
 		} = event;
-		setDistance( value);
+		if(typeof value === 'number') setDistance(value);
 	};
 
 	/**
@@ -130,6 +130,7 @@ const MovieTheater: React.FC = () => {
 				getGPSDatas(datas);
 				const accessibilities = await fetchDatas("accessibilities");
 				setAccessibilityOptions(accessibilities);
+				setShowMarker(true)
 				console.log(accessibilityOptions);
 			} catch (error) {
 				throw new Error();
@@ -139,11 +140,6 @@ const MovieTheater: React.FC = () => {
 	}, [position]);
 
 	useEffect(() => {
-		if (distance.length===0) {
-			setShowMarker(false)
-		} else {
-			setShowMarker(true)
-		}
 		console.log(position, distance);
 	}, [position, distance]);
 
@@ -153,6 +149,7 @@ const MovieTheater: React.FC = () => {
 			sx={{ marginTop: "1rem", height: "calc(100vh - 135px)", gap: "2rem", justifyContent: "center" }}>
 			<Grid
 				container
+				sx={{ flexDirection:"column", gap:"1rem", justifyContent:"space-between", marginBottom:"1rem" }}
 				xs={3}>
 				<TextField
 					id="searchbar"
@@ -226,12 +223,12 @@ const MovieTheater: React.FC = () => {
 								onChange={handleDistanceChange}
 								input={<OutlinedInput label="distance" />}
 								MenuProps={MenuProps}>
-								<MenuItem value="">Aucune</MenuItem>
+								<MenuItem value={0}>Aucune</MenuItem>
 								{distances.map(elt => (
 									<MenuItem
-										key={elt}
-										value={elt}>
-										{elt}
+										key={elt.label}
+										value={elt.value}>
+										{elt.label}
 									</MenuItem>
 								))}
 							</Select>
@@ -279,7 +276,7 @@ const MovieTheater: React.FC = () => {
 						position={position}
 						ref={markerRef}>
 						<Popup minWidth={90}>
-							<Typography>Point de référence</Typography>
+							<Typography>Marqueur de localisation</Typography>
 						</Popup>
 					</Marker>}
 					{markers.map((position, index) => (
@@ -300,12 +297,14 @@ const MovieTheater: React.FC = () => {
 			</Grid>
 			<Grid
 				container
+				sx={{ overflowY:"scroll", maxHeight: 'calc(100vh - 135px)'}}
 				xs={8}
 				spacing={2}>
 				{cinemas.map((cinema, index) => (
 					<CinemaCard
 						key={index}
 						cinema={cinema}
+						distance={distance}
 					/>
 				))}
 			</Grid>

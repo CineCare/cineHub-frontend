@@ -6,8 +6,11 @@ import EmailIcon from "@mui/icons-material/Email";
 import AudiotrackIcon from "@mui/icons-material/Audiotrack";
 import MyLocationIcon from "@mui/icons-material/MyLocation";
 import PersonPinIcon from '@mui/icons-material/PersonPin';
+import "./CinemaCard.scss";
 
-const CinemaCard: React.FC<{ cinema: CinemaObject }> = ({ cinema }) => {
+const CinemaCard: React.FC<{ cinema: CinemaObject, distance:number }> = ({ cinema, distance }) => {
+	const floatCinema = parseFloat(cinema.distance);
+	const hideClass = "hidden";
 	const [flipped, setFlipped] = useState(false);
 
 	const formatDistance = (elt:string) =>{
@@ -21,9 +24,10 @@ const CinemaCard: React.FC<{ cinema: CinemaObject }> = ({ cinema }) => {
 	const handleCardClick = () => {
 		setFlipped(!flipped);
 	};
-
+	
 	return (
 		<Grid
+			className={(distance !== 0) && (floatCinema > distance )? hideClass : ''}
 			item
 			xs={4}>
 			<Card
