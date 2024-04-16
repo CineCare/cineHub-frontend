@@ -119,6 +119,21 @@ const MovieTheater: React.FC = () => {
 		[]
 	);
 
+	const getLatLgFromString = (gps:string) => {
+		const [lat,long]=gps.split(',');
+		return {
+			lat:parseFloat(lat),
+			lng:parseFloat(long)
+		}
+
+	}
+
+	const relocateFromGPS = (gps: string) => {
+		console.log(gps);
+		const data:LatLngExpression = getLatLgFromString(gps)
+		setPosition(data)
+	}
+
 	useEffect(() => {
 		const initMovieTheaters = async () => {
 			try {
@@ -305,6 +320,7 @@ const MovieTheater: React.FC = () => {
 						key={index}
 						cinema={cinema}
 						distance={distance}
+						onRelocate={relocateFromGPS}
 					/>
 				))}
 			</Grid>
