@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Grid, Card, CardActionArea, CardContent, Typography, Box, Chip, CardMedia, Divider } from "@mui/material";
-import { CinemaObject } from "../../Interfaces/Interfaces";
+import { CinemaCardProps } from "../../Interfaces/Interfaces";
 import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
 import EmailIcon from "@mui/icons-material/Email";
 import AudiotrackIcon from "@mui/icons-material/Audiotrack";
@@ -8,7 +8,8 @@ import MyLocationIcon from "@mui/icons-material/MyLocation";
 import PersonPinIcon from "@mui/icons-material/PersonPin";
 import "./CinemaCard.scss";
 
-const CinemaCard: React.FC<{ cinema: CinemaObject; distance: number }> = ({ cinema, distance }) => {
+
+const CinemaCard: React.FC<CinemaCardProps> = ({ cinema, distance,onRelocate }) => {
 	const floatCinema = parseFloat(cinema.distance);
 	const hideClass = "hidden";
 	const [flipped, setFlipped] = useState(false);
@@ -24,6 +25,7 @@ const CinemaCard: React.FC<{ cinema: CinemaObject; distance: number }> = ({ cine
 	const relocateMap = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, gps: string) => {
 		e.stopPropagation();
 		console.log(gps);
+		onRelocate(gps);
 	};
 
 	const handleCardClick = () => {
@@ -43,7 +45,7 @@ const CinemaCard: React.FC<{ cinema: CinemaObject; distance: number }> = ({ cine
 					transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
 				}}
 				onClick={handleCardClick}>
-				<CardActionArea sx={{ height: "22rem" }}>
+				<CardActionArea sx={{ height: "22rem",backgroundColor:"white" }}>
 					{!flipped ? (
 						<>
 							<CardMedia
@@ -51,6 +53,7 @@ const CinemaCard: React.FC<{ cinema: CinemaObject; distance: number }> = ({ cine
 								height="100%"
 								image={cinema.photo}
 								alt={cinema.description}
+								sx={{objectFit:"fill"}}
 							/>
 							<CardContent sx={{ backgroundColor: "rgba(0,0,0,0.65)", position: "absolute", bottom: "0", width: "100%", height: "25%", padding: 0, paddingLeft: "0.5rem" }}>
 								<Typography

@@ -1,5 +1,11 @@
 import { ReactNode } from "react";
 
+type ActionFunction = (gps: string) => void;
+
+interface ChildProps {
+  onAction: ActionFunction;
+}
+
 type AccessibilityObject = {
   audio         : string;
   description   : string;
@@ -42,11 +48,20 @@ interface ThemeProviderProps {
   children: ReactNode;
 }
 
+interface CinemaCardProps {
+  cinema: CinemaObject;
+  distance: number;
+  onRelocate: ActionFunction; // Utilisez directement ActionFunction ici
+}
+
 
 export type {
   AccessibilityObject,
   ArrowProps,
   CinemaObject,
+  ChildProps,
+  CinemaCardProps,
+  ActionFunction,
   ThemeContextType,
   ThemeProviderProps
 }

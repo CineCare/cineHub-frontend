@@ -105,6 +105,10 @@ const ProductionStudios: React.FC = () => {
 		setAccessibility(typeof value === "string" ? value.split(",") : value);
 	};
 
+		const relocateFromGPS = (gps: string) => {
+		console.log(gps);
+	}
+
 	const markerRef = useRef<leafletMarker | null>(null);
 	const eventHandlers = useMemo(
 		() => ({
@@ -305,6 +309,7 @@ const ProductionStudios: React.FC = () => {
 						key={index}
 						cinema={cinema}
 						distance={distance}
+						onRelocate={relocateFromGPS}
 					/>
 				))}
 			</Grid>
