@@ -67,24 +67,7 @@ const Home: React.FC = () => {
           </Typography>
           <div className="contentContainer">
             <Typography variant="body1" gutterBottom>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit
-              minus accusantium repudiandae, laboriosam accusamus aliquam iste
-              reprehenderit enim itaque fugiat commodi alias maiores eaque iure
-              doloremque laborum suscipit provident saepe. Ducimus ex et, ut,
-              eius laborum sunt libero, maxime esse dignissimos provident nobis
-              iure quia! Culpa accusantium dicta eaque error aut maxime? Labore
-              similique quae quas cumque saepe, facere distinctio. Temporibus
-              cum maiores dolorum officiis magni quia ratione laudantium illo
-              qui enim! Dolorem aperiam officia laudantium non esse itaque et
-              quaerat. Cumque itaque, iusto similique consequatur porro quos
-              iure nisi. Ea consequuntur, modi sunt voluptas esse nam non,
-              minima nobis illum quisquam quod excepturi quia! Rem itaque
-              explicabo ipsa asperiores quas voluptas, iste magnam quam
-              voluptates beatae optio, architecto totam? Inventore quisquam
-              earum odit modi atque animi doloremque vero pariatur officia
-              praesentium, laboriosam reiciendis porro, aliquam, officiis saepe
-              rem. Doloremque sint temporibus animi numquam beatae quaerat
-              inventore, nostrum consequuntur expedita!
+            Notre section "Salles de cinéma" a été conçue pour répondre à un besoin crucial : l'accessibilité cinématographique à Montréal. Trop souvent, les amateurs de cinéma découvrent, une fois sur place, que les salles ne disposent pas de tous les dispositifs nécessaires à une expérience inclusive, tels que des sous-titres pour sourd(e)s et ou malentendant(e)s ou des rampes d'accès pour les personnes à mobilité réduite, ou des ajustements dans les éclairages pour éviter le surmenage sensoriel chez les personnes avec des handicaps neurologiques... En répertoriant les salles de cinéma selon leurs équipements d'accessibilité, nous aspirons à soutenir les spectateurs en leur permettant d'identifier facilement les services adaptés à leurs besoins spécifiques. De plus, cette initiative vise à sensibiliser tant les exploitants de cinémas que le public sur l'importance de progresser vers une accessibilité universelle, en mettant en lumière les lacunes existantes et en encourageant les améliorations nécessaires pour que le cinéma soit véritablement accessible à toustes.
             </Typography>
             <div>
               <img src={illustrationTheater} alt="" />
@@ -97,24 +80,7 @@ const Home: React.FC = () => {
           </Typography>
           <div className="contentContainer">
             <Typography variant="body1" gutterBottom>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit
-              minus accusantium repudiandae, laboriosam accusamus aliquam iste
-              reprehenderit enim itaque fugiat commodi alias maiores eaque iure
-              doloremque laborum suscipit provident saepe. Ducimus ex et, ut,
-              eius laborum sunt libero, maxime esse dignissimos provident nobis
-              iure quia! Culpa accusantium dicta eaque error aut maxime? Labore
-              similique quae quas cumque saepe, facere distinctio. Temporibus
-              cum maiores dolorum officiis magni quia ratione laudantium illo
-              qui enim! Dolorem aperiam officia laudantium non esse itaque et
-              quaerat. Cumque itaque, iusto similique consequatur porro quos
-              iure nisi. Ea consequuntur, modi sunt voluptas esse nam non,
-              minima nobis illum quisquam quod excepturi quia! Rem itaque
-              explicabo ipsa asperiores quas voluptas, iste magnam quam
-              voluptates beatae optio, architecto totam? Inventore quisquam
-              earum odit modi atque animi doloremque vero pariatur officia
-              praesentium, laboriosam reiciendis porro, aliquam, officiis saepe
-              rem. Doloremque sint temporibus animi numquam beatae quaerat
-              inventore, nostrum consequuntur expedita!
+            Bienvenue dans notre section "Boîtes de production", un espace dédié à mettre en lumière et à valoriser le travail des créatrices et créateurs audiovisuels. Cette section facilite la recherche des particuliers, professionels, universitaires, sur les questions de production et permet d'identifier les projets prometteurs qui pourraient enrichir le futur catalogue de films de notre future plateforme de streaming, CinéCare. Notre objectif sera de proposer une expérience cinématographique qui soit à la fois thérapeutique-inclusive-accessible-écologique. En explorant ce volet, vous découvrirez les coulisses des créations qui façonnent les tendances actuelles et futures du cinéma, tout en soutenant une industrie plus responsable et attentive aux besoins de toustes.
             </Typography>
             <div>
               <img src={illustrationProduction} alt="" />
@@ -127,24 +93,7 @@ const Home: React.FC = () => {
           </Typography>
           <div className="contentContainer">
             <Typography variant="body1" gutterBottom>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit
-              minus accusantium repudiandae, laboriosam accusamus aliquam iste
-              reprehenderit enim itaque fugiat commodi alias maiores eaque iure
-              doloremque laborum suscipit provident saepe. Ducimus ex et, ut,
-              eius laborum sunt libero, maxime esse dignissimos provident nobis
-              iure quia! Culpa accusantium dicta eaque error aut maxime? Labore
-              similique quae quas cumque saepe, facere distinctio. Temporibus
-              cum maiores dolorum officiis magni quia ratione laudantium illo
-              qui enim! Dolorem aperiam officia laudantium non esse itaque et
-              quaerat. Cumque itaque, iusto similique consequatur porro quos
-              iure nisi. Ea consequuntur, modi sunt voluptas esse nam non,
-              minima nobis illum quisquam quod excepturi quia! Rem itaque
-              explicabo ipsa asperiores quas voluptas, iste magnam quam
-              voluptates beatae optio, architecto totam? Inventore quisquam
-              earum odit modi atque animi doloremque vero pariatur officia
-              praesentium, laboriosam reiciendis porro, aliquam, officiis saepe
-              rem. Doloremque sint temporibus animi numquam beatae quaerat
-              inventore, nostrum consequuntur expedita!
+            Bienvenue dans notre "Journal de bord", un espace dédié à partager le processus créatif de notre équipe de développeurs web. Cet espace est conçu pour offrir une transparence totale sur les évolutions et les innovations que nous intégrons à notre site. Ici, vous trouverez des comptes rendus détaillés, des documentations techniques et les diverses étapes de développement qui contribuent à améliorer continuellement notre plateforme. Notre objectif est de vous faire découvrir les coulisses du développement de solutions qui facilitent votre recherche de maisons de production et de salles de cinéma accessibles. Nous espérons que ce journal vous permettra non seulement de comprendre mieux les fonctionnalités que nous proposons, mais aussi de voir comment notre équipe s'engage à répondre efficacement à vos besoins.
             </Typography>
             <div>
               <img src={illustrationDashboard} alt="" />
