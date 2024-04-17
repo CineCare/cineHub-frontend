@@ -18,15 +18,23 @@ import { CinemaObject } from "../../../Interfaces/Interfaces";
 
 interface CinemaCardProps {
   cinema: CinemaObject;
+  listType: "CinemaList" | "ProductionHousesList";
 }
 
-const CinemaCardResponse: React.FC<CinemaCardProps> = ({ cinema }) => {
+const CinemaCardResponse: React.FC<CinemaCardProps> = ({
+  cinema,
+  listType,
+}) => {
   const [expanded, setExpanded] = useState(false);
   console.log(cinema);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  // Déterminez le lien en fonction de la liste utilisée
+  const linkTo =
+    listType === "CinemaList" ? "/movie-theaters" : "/production-studios";
 
   return (
     <Card variant="outlined">
@@ -50,7 +58,7 @@ const CinemaCardResponse: React.FC<CinemaCardProps> = ({ cinema }) => {
               color="primary"
               size="small"
               component={Link}
-              to="/movie-theaters"
+              to={linkTo}
             >
               Visiter
             </Button>
