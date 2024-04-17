@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./ConversationHandler.scss";
-import CinemaList from "../../CinemaList";
+import CinemaList from "../CinemaList";
+import ProductionsHousesList from "../ProductionsHousesList";
 import { ConversationHandlerProps } from "../../../Interfaces/Interfaces";
 
 const ConversationHandler: React.FC<ConversationHandlerProps> = ({
@@ -38,6 +39,17 @@ const ConversationHandler: React.FC<ConversationHandlerProps> = ({
         </div>
       );
     } else if (
+      lowercaseQuestion.includes("boîte") ||
+      lowercaseQuestion.includes("boite") ||
+      lowercaseQuestion.includes("production")
+    ) {
+      return (
+        <div>
+          <p>Bien sûr, voici la liste des boite de productions</p>
+          <ProductionsHousesList />
+        </div>
+      );
+    } else if (
       lowercaseQuestion.includes("bonjour") ||
       lowercaseQuestion.includes("salut") ||
       lowercaseQuestion.includes("hello")
@@ -45,6 +57,15 @@ const ConversationHandler: React.FC<ConversationHandlerProps> = ({
       return (
         <div>
           <p>Bonjour ! En quoi puis-je vous aider aujourd'hui ?</p>
+        </div>
+      );
+    } else if (lowercaseQuestion.includes("merci")) {
+      return (
+        <div>
+          <p>
+            Super! Je suis ravi d'avoir pu vous aider, si vous avez d'autres
+            questions, je reste à votre disposition.
+          </p>
         </div>
       );
     } else {
