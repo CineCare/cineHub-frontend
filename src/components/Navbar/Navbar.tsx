@@ -7,7 +7,7 @@ import logoText from "../../assets/img/logo-text-white.svg";
 import Stack from "@mui/material/Stack";
 import { useTheme } from "../../contexts/ThemeContext";
 import { unreadableTheme, theme } from "../../styles/_themes";
-import { CameraOutdoor, MenuBook, MovieCreation, SmartToy, AutoFixHigh, AutoFixOff } from "@mui/icons-material";
+import { CameraOutdoor, MenuBook, MovieCreation, SmartToy, AutoFixHigh, AutoFixOff, Theaters } from "@mui/icons-material";
 import { AppBar, Toolbar, Container, Button, Tooltip, IconButton, Menu, MenuItem, ListItemIcon, Divider, Typography, Box, Avatar, Hidden } from "@mui/material";
 import { appBarHeight, iconMap, navbarSettings } from "../../options/GeneralOptions";
 import ModalWindow from "../ChatBot/ModalWindow/ModalWindow";
@@ -118,6 +118,15 @@ const Navbar: React.FC = () => {
 								</MenuItem>
 								<MenuItem
 									component={Link}
+									to="/distributor"
+									onClick={handleCloseNavMenu}>
+									<ListItemIcon>
+										<Theaters />
+									</ListItemIcon>
+									<Typography textAlign="center">Distributeurs</Typography>
+								</MenuItem>
+								<MenuItem
+									component={Link}
 									to="/dashboard"
 									onClick={handleCloseNavMenu}>
 									<ListItemIcon>
@@ -167,6 +176,24 @@ const Navbar: React.FC = () => {
 										},
 									}}>
 									Boîtes de production
+								</Button>
+								<Button
+									key="distributor"
+									component={Link}
+									onClick={handleCloseNavMenu}
+									to="/distributor"
+									startIcon={<Theaters />}
+									sx={{
+										borderRadius: 0,
+										color: "white",
+										borderBottom: "2px solid transparent",
+										height: appBarHeight,
+										"&:hover": {
+											borderBottomColor: secondaryColor,
+											backgroundColor: "transparent",
+										},
+									}}>
+									Distributeurs
 								</Button>
 								<Button
 									key="dashboard"
