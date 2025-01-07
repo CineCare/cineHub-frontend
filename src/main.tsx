@@ -12,6 +12,7 @@ import Navbar from "./components/Navbar/Navbar.tsx";
 import ProductionStudios from "./pages/ProductionStudios/ProductionStudios.tsx";
 import Dashboard from "./pages/Dashboard/Dashboard.tsx";
 import Filter from "./components/Filter/Filter.tsx";
+import Distributor from "./pages/Distributor/Distributor.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
@@ -33,6 +34,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 					<Route
 						path="/dashboard"
 						element={<Dashboard />}></Route>
+					<Route
+						path="/distributor"
+						element={<Distributor />}></Route>
 					<Route
 						path="*"
 						element={<Error />}></Route>
