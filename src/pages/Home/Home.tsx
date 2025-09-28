@@ -102,39 +102,38 @@ const Home: React.FC = () => {
         </Box>
         <Box component="section">
           <Typography variant="h2" gutterBottom>
-            Les réglages personnalisés pour une meilleure expérience utilisateur
+            Les réglages personnalisés pour une meilleure expérience utilisatrices et utilisateurs
           </Typography>
           <div className="contentContainer">
             <Typography variant="body1">
+              Des paramètres personnalisés pour une expérience optimale<br/>
               Votre confort est notre priorité. C’est pourquoi nous vous
-              proposons de découvrir une expérience utilisateur sur mesure grâce
-              à notre fonctionnalité de personnalisation avancée. Nous vous
-              offrons la possibilité de régler de nombreux paramètres pour les
-              adapter selon vos préférences et vos besoins. Les options de
+              proposons de découvrir une expérience adaptée grâce
+              à une fonctionnalité de personnalisation avancée. Vous pouvez ajuster de nombreux paramètres afin qu’ils correspondent à vos préférences et à vos besoins. Les options de
               personnalisation comprennent notamment :
               <ListItem sx={{ padding: 0 }}>
                 <ListItemIcon>
                   <LiveHelpIcon />
                 </ListItemIcon>
-                <ListItemText primary="d’ajuster le niveau d'aide que vous recevez" />
+                <ListItemText primary="ajuster le niveau d’assistance que vous recevez" />
               </ListItem>
               <ListItem sx={{ padding: 0 }}>
                 <ListItemIcon>
                   <ColorLensIcon />
                 </ListItemIcon>
-                <ListItemText primary=" de choisir des couleurs et une police qui vous conviennent" />
+                <ListItemText primary="choisir les couleurs et la police qui vous conviennent" />
               </ListItem>
               <ListItem sx={{ padding: 0 }}>
                 <ListItemIcon>
                   <FormatSizeIcon />
                 </ListItemIcon>
-                <ListItemText primary="de modifier la taille du texte pour une lecture plus confortable" />
+                <ListItemText primary="modifier la taille du texte pour une lecture plus agréable" />
               </ListItem>
               <ListItem sx={{ padding: 0 }}>
                 <ListItemIcon>
                   <VideoSettingsIcon />
                 </ListItemIcon>
-                <ListItemText primary="de personnaliser le mode automatique et audio" />
+                <ListItemText primary="personnaliser le mode automatique et audio" />
               </ListItem>
             </Typography>
             <div>
