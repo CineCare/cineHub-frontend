@@ -67,7 +67,14 @@ const Home: React.FC = () => {
           </Typography>
           <div className="contentContainer">
             <Typography variant="body1" gutterBottom>
-            Notre section "Salles de cinéma" a été conçue pour répondre à un besoin crucial : l'accessibilité cinématographique à Montréal. Trop souvent, les amateurs de cinéma découvrent, une fois sur place, que les salles ne disposent pas de tous les dispositifs nécessaires à une expérience inclusive, tels que des sous-titres pour sourd(e)s et ou malentendant(e)s ou des rampes d'accès pour les personnes à mobilité réduite, ou des ajustements dans les éclairages pour éviter le surmenage sensoriel chez les personnes avec des handicaps neurologiques... En répertoriant les salles de cinéma selon leurs équipements d'accessibilité, nous aspirons à soutenir les spectateurs en leur permettant d'identifier facilement les services adaptés à leurs besoins spécifiques. De plus, cette initiative vise à sensibiliser tant les exploitants de cinémas que le public sur l'importance de progresser vers une accessibilité universelle, en mettant en lumière les lacunes existantes et en encourageant les améliorations nécessaires pour que le cinéma soit véritablement accessible à toustes.
+            <b>promuvoir une accessibilité universelle</b><br/>
+            cette section a été conçue pour répondre à un enjeu essentiel : l'accessibilité des salles de cinéma à Montréal. 
+            Trop souvent, les les spectateurs et spectatrices découvrent, une fois sur place, que les salles ne sont pas équipées de tous les dispositifs nécessaires à une expérience inclusive : 
+            sous-titrage pour  les personnes sourdes ou malentendantes ou des rampes d'accès pour les personnes à mobilité réduite, 
+            ajustements lumineux pour limiter le surmenage sensoriel chez les personnes ayant des besoins neurologiques spécifiques, etc.<br/>
+            En répertoriant les salles de cinéma selon leurs équipements d'accessibilité, nous souhaitons offrir aux publics un repère clair pour identifier facilement les services adaptés à leurs besoins. 
+            Cette démarche vise également à sensibiliser les exploitant(e)s de salles, en mettant en évidence les lacunes actuelles et en encourageant les améliorations indispensables.<br/>
+            L’objectif est de tendre vers une véritable accessibilité universelle, afin que le cinéma soit un espace accueillant et habitable pour toutes et tous.
             </Typography>
             <div>
               <img src={illustrationTheater} alt="" />
@@ -93,7 +100,13 @@ const Home: React.FC = () => {
           </Typography>
           <div className="contentContainer">
             <Typography variant="body1" gutterBottom>
-            Bienvenue dans notre "Journal de bord", un espace dédié à partager le processus créatif de notre équipe de développeurs web. Cet espace est conçu pour offrir une transparence totale sur les évolutions et les innovations que nous intégrons à notre site. Ici, vous trouverez des comptes rendus détaillés, des documentations techniques et les diverses étapes de développement qui contribuent à améliorer continuellement notre plateforme. Notre objectif est de vous faire découvrir les coulisses du développement de solutions qui facilitent votre recherche de maisons de production et de salles de cinéma accessibles. Nous espérons que ce journal vous permettra non seulement de comprendre mieux les fonctionnalités que nous proposons, mais aussi de voir comment notre équipe s'engage à répondre efficacement à vos besoins.
+            <b>Les coulisses du développement</b><br/>
+            Bienvenue dans notre "Journal de bord", conçu pour partager le processus créatif et technique de notre équipe de développement web. 
+            Cet espace a pour vocation d’assurer une transparence complète sur les évolutions et innovations que nous intégrons à notre site.<br/>
+            Vous y trouverez des comptes rendus détaillés, des documentations techniques et les différentes étapes du développement qui contribuent à l’amélioration continue de la plateforme. 
+            Notre objectif est de vous donner accès aux coulisses de la création de solutions facilitant la recherche de maisons de production et de salles de cinéma accessibles.<br/>
+            Nous espérons que ce journal vous aidera à mieux comprendre les fonctionnalités que nous proposons, tout en vous montrant comment notre équipe 
+            s’engage à répondre de manière efficace et créative à vos besoins.
             </Typography>
             <div>
               <img src={illustrationDashboard} alt="" />
@@ -102,39 +115,38 @@ const Home: React.FC = () => {
         </Box>
         <Box component="section">
           <Typography variant="h2" gutterBottom>
-            Les réglages personnalisés pour une meilleure expérience utilisateur
+            Les réglages personnalisés pour une meilleure expérience utilisatrices et utilisateurs
           </Typography>
           <div className="contentContainer">
             <Typography variant="body1">
+              Des paramètres personnalisés pour une expérience optimale<br/>
               Votre confort est notre priorité. C’est pourquoi nous vous
-              proposons de découvrir une expérience utilisateur sur mesure grâce
-              à notre fonctionnalité de personnalisation avancée. Nous vous
-              offrons la possibilité de régler de nombreux paramètres pour les
-              adapter selon vos préférences et vos besoins. Les options de
+              proposons de découvrir une expérience adaptée grâce
+              à une fonctionnalité de personnalisation avancée. Vous pouvez ajuster de nombreux paramètres afin qu’ils correspondent à vos préférences et à vos besoins. Les options de
               personnalisation comprennent notamment :
               <ListItem sx={{ padding: 0 }}>
                 <ListItemIcon>
                   <LiveHelpIcon />
                 </ListItemIcon>
-                <ListItemText primary="d’ajuster le niveau d'aide que vous recevez" />
+                <ListItemText primary="ajuster le niveau d’assistance que vous recevez" />
               </ListItem>
               <ListItem sx={{ padding: 0 }}>
                 <ListItemIcon>
                   <ColorLensIcon />
                 </ListItemIcon>
-                <ListItemText primary=" de choisir des couleurs et une police qui vous conviennent" />
+                <ListItemText primary="choisir les couleurs et la police qui vous conviennent" />
               </ListItem>
               <ListItem sx={{ padding: 0 }}>
                 <ListItemIcon>
                   <FormatSizeIcon />
                 </ListItemIcon>
-                <ListItemText primary="de modifier la taille du texte pour une lecture plus confortable" />
+                <ListItemText primary="modifier la taille du texte pour une lecture plus agréable" />
               </ListItem>
               <ListItem sx={{ padding: 0 }}>
                 <ListItemIcon>
                   <VideoSettingsIcon />
                 </ListItemIcon>
-                <ListItemText primary="de personnaliser le mode automatique et audio" />
+                <ListItemText primary="personnaliser le mode automatique et audio" />
               </ListItem>
             </Typography>
             <div>
