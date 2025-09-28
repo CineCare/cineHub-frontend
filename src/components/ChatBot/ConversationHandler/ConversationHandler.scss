@@ -1,0 +1,45 @@
+.response {
+  background-color: #40444b; /* Couleur de fond */
+  padding: 10px; /* Espacement interne */
+  border-radius: 8px; /* Bordure arrondie */
+  margin-bottom: 10px; /* Marge en bas pour séparer les réponses */
+  color: #ffffff; /* Couleur du texte */
+  font-size: 14px; /* Taille de police */
+}
+
+.response p {
+  margin: 0; /* Suppression de la marge par défaut des paragraphes */
+}
+
+.response ul {
+  list-style-type: none; /* Suppression des puces de liste */
+  padding: 0; /* Suppression du remplissage par défaut */
+}
+
+.response li {
+  margin-bottom: 5px; /* Espacement entre les éléments de liste */
+}
+
+////////////
+
+.question {
+  background-color: #40444b; /* Couleur de fond */
+  padding: 10px; /* Espacement interne */
+  border-radius: 8px; /* Bordure arrondie */
+  margin-bottom: 10px; /* Marge en bas pour séparer les réponses */
+  color: #ffffff; /* Couleur du texte */
+  font-size: 14px; /* Taille de police */
+}
+
+.question p {
+  margin: 0; /* Suppression de la marge par défaut des paragraphes */
+}
+
+.question ul {
+  list-style-type: none; /* Suppression des puces de liste */
+  padding: 0; /* Suppression du remplissage par défaut */
+}
+
+.question li {
+  margin-bottom: 5px; /* Espacement entre les éléments de liste */
+}

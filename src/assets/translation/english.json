@@ -1,5 +1,8 @@
 {
-  "COMINGSOON":{
-    "title":"We set up an awesome app for you."
-  }
+	"COMINGSOON": {
+		"button"    : "Send",
+		"content"   : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis adipisci aspernatur sint ex voluptatem tempore magnam quasi dolores neque quidem illum at, recusandae eveniet remexpedita ipsum ipslaboriosam cum.",
+		"label"     : "Insert a valid email address to be informed when the app will be ready",
+		"title"     : "We set up a lovely app just for you."
+	}
 }

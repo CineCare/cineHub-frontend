@@ -1,0 +1,18 @@
+.searchbarAssistant {
+  display: flex;
+  width: 100%;
+  gap: 2rem;
+  align-items: center;
+}
+
+.question-response {
+  display: grid;
+  .question {
+    justify-self: flex-end;
+    // min-width: 5rem;
+    text-align: end;
+  }
+  .response {
+    justify-self: flex-start;
+  }
+}
