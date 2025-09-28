@@ -67,7 +67,7 @@ const Home: React.FC = () => {
           </Typography>
           <div className="contentContainer">
             <Typography variant="body1" gutterBottom>
-            <b>promuvoir une accessibilité universelle</b><br/>
+            <b>promouvoir une accessibilité universelle</b><br/>
             cette section a été conçue pour répondre à un enjeu essentiel : l'accessibilité des salles de cinéma à Montréal. 
             Trop souvent, les les spectateurs et spectatrices découvrent, une fois sur place, que les salles ne sont pas équipées de tous les dispositifs nécessaires à une expérience inclusive : 
             sous-titrage pour  les personnes sourdes ou malentendantes ou des rampes d'accès pour les personnes à mobilité réduite, 
