@@ -7,36 +7,36 @@ interface ChildProps {
 }
 
 type AccessibilityObject = {
-  audio         : string;
-  description   : string;
-  id            : number;
-  name          : string;
-  picto         : string;
+  audio: string;
+  description: string;
+  id: number;
+  name: string;
+  picto: string;
 };
 
 type CinemaObject = {
-  accessibilities : AccessibilityObject[];
-  address1        : string;
-  address2?       : string;
-  audio?          : string;
-  city            : string;
-  createdAt       : string;
-  description?    : string;
-  email           : string;
-  gps             : string;
-  id              : number;
-  name            : string;
-  phone           : string;
-  photo?          : string;
-  postalCode      : string;
-  updatedAt       : string;
+  accessibilities: AccessibilityObject[];
+  address1: string;
+  address2?: string;
+  audio?: string;
+  city: string;
+  createdAt: string;
+  description?: string;
+  email: string;
+  gps: string;
+  id: number;
+  name: string;
+  phone: string;
+  photo?: string;
+  postalCode: string;
+  updatedAt: string;
   distance: string;
 };
 
 interface ArrowProps {
-  className?    : string;
-  onClick?      : () => void;
-  style?        : React.CSSProperties;
+  className?: string;
+  onClick?: () => void;
+  style?: React.CSSProperties;
 }
 
 interface ThemeContextType {
@@ -54,6 +54,16 @@ interface CinemaCardProps {
   onRelocate: ActionFunction; // Utilisez directement ActionFunction ici
 }
 
+interface ConversationHandlerProps {
+  question: string;
+}
+
+interface ModalProps {
+  visible: boolean;
+  onClose: () => void;
+}
+
+
 
 export type {
   AccessibilityObject,
@@ -63,5 +73,7 @@ export type {
   CinemaCardProps,
   ActionFunction,
   ThemeContextType,
-  ThemeProviderProps
-}
+  ThemeProviderProps,
+  ConversationHandlerProps,
+  ModalProps,
+};
